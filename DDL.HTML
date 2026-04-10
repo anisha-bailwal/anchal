@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+        <div class="questions-container">
+          <div class="question-card">
+  <h3>Q1: Create a table called STUDENT with columns: SID (NUMBER), SNAME (VARCHAR2(30)), AGE (NUMBER), COURSE (VARCHAR2(20))</h3>
+  <p>CREATE TABLE STUDENT (SID NUMBER, SNAME VARCHAR2(30), AGE NUMBER, COURSE VARCHAR2(20));</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Create a table EMPLOYEE with columns: EID NUMBER, ENAME VARCHAR2(40), SALARY NUMBER(8,2), DEPTNO NUMBER</h3>
+  <p>CREATE TABLE EMPLOYEE (EID NUMBER, ENAME VARCHAR2(40), SALARY NUMBER(8,2), DEPTNO NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Create a table DEPARTMENT with columns: DEPTNO NUMBER, DNAME VARCHAR2(30), LOCATION VARCHAR2(30)</h3>
+  <p>CREATE TABLE DEPARTMENT (DEPTNO NUMBER, DNAME VARCHAR2(30), LOCATION VARCHAR2(30));</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Create a table BOOK with columns: BOOK_ID NUMBER, TITLE VARCHAR2(50), AUTHOR VARCHAR2(40), PRICE NUMBER</h3>
+  <p>CREATE TABLE BOOK (BOOK_ID NUMBER, TITLE VARCHAR2(50), AUTHOR VARCHAR2(40), PRICE NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Create a table COURSE with columns: CID NUMBER, CNAME VARCHAR2(40), DURATION NUMBER</h3>
+  <p>CREATE TABLE COURSE (CID NUMBER, CNAME VARCHAR2(40), DURATION NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Create a table PROJECT with columns: PID NUMBER, PNAME VARCHAR2(50), START_DATE DATE, END_DATE DATE</h3>
+  <p>CREATE TABLE PROJECT (PID NUMBER, PNAME VARCHAR2(50), START_DATE DATE, END_DATE DATE);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Create a table CUSTOMER with columns: CID NUMBER, CNAME VARCHAR2(40), CITY VARCHAR2(30), PHONE NUMBER</h3>
+  <p>CREATE TABLE CUSTOMER (CID NUMBER, CNAME VARCHAR2(40), CITY VARCHAR2(30), PHONE NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Create a table SALES with columns: SALE_ID NUMBER, PRODUCT_NAME VARCHAR2(50), QUANTITY NUMBER, PRICE NUMBER</h3>
+  <p>CREATE TABLE SALES (SALE_ID NUMBER, PRODUCT_NAME VARCHAR2(50), QUANTITY NUMBER, PRICE NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Create a table EMP_COPY from the existing EMP table (structure only)</h3>
+  <p>CREATE TABLE EMP_COPY AS SELECT * FROM EMP WHERE 1=0;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Create a table EMP_BACKUP from EMP including data</h3>
+  <p>CREATE TABLE EMP_BACKUP AS SELECT * FROM EMP;</p>
+</div>
+<div class="question-card">
+  <h3>Q11: Add a column EMAIL VARCHAR2(50) to the STUDENT table</h3>
+  <p>ALTER TABLE STUDENT ADD EMAIL VARCHAR2(50);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Add a column PHONE NUMBER to the EMPLOYEE table</h3>
+  <p>ALTER TABLE EMPLOYEE ADD PHONE NUMBER;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Modify the column SNAME in STUDENT table to VARCHAR2(50)</h3>
+  <p>ALTER TABLE STUDENT MODIFY SNAME VARCHAR2(50);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Modify the column SALARY in EMPLOYEE table to NUMBER(10,2)</h3>
+  <p>ALTER TABLE EMPLOYEE MODIFY SALARY NUMBER(10,2);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Add two columns CITY VARCHAR2(30) and PINCODE NUMBER to CUSTOMER table</h3>
+  <p>ALTER TABLE CUSTOMER ADD (CITY VARCHAR2(30), PINCODE NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Rename the column SNAME to STUDENT_NAME in STUDENT table</h3>
+  <p>ALTER TABLE STUDENT RENAME COLUMN SNAME TO STUDENT_NAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Drop the column AGE from STUDENT table</h3>
+  <p>ALTER TABLE STUDENT DROP COLUMN AGE;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Set the column SALARY in EMPLOYEE table to NOT NULL</h3>
+  <p>ALTER TABLE EMPLOYEE MODIFY SALARY NUMBER(10,2) NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Increase the size of column TITLE in BOOK table to VARCHAR2(100)</h3>
+  <p>ALTER TABLE BOOK MODIFY TITLE VARCHAR2(100);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Add a column MANAGER_ID NUMBER to EMPLOYEE table</h3>
+  <p>ALTER TABLE EMPLOYEE ADD MANAGER_ID NUMBER;</p>
+</div>
+<div class="question-card">
+  <h3>Q21: Drop the table STUDENT</h3>
+  <p>DROP TABLE STUDENT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Drop the table CUSTOMER from the database</h3>
+  <p>DROP TABLE CUSTOMER;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Drop the table PROJECT permanently</h3>
+  <p>DROP TABLE PROJECT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Remove the table SALES</h3>
+  <p>DROP TABLE SALES;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Drop the table COURSE</h3>
+  <p>DROP TABLE COURSE;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Rename the table STUDENT to STUDENTS</h3>
+  <p>ALTER TABLE STUDENT RENAME TO STUDENTS;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Rename the table EMPLOYEE to EMP_MASTER</h3>
+  <p>ALTER TABLE EMPLOYEE RENAME TO EMP_MASTER;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Rename the table CUSTOMER to CLIENT</h3>
+  <p>ALTER TABLE CUSTOMER RENAME TO CLIENT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Rename the table BOOK to BOOK_DETAILS</h3>
+  <p>ALTER TABLE BOOK RENAME TO BOOK_DETAILS;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Rename the table PROJECT to PROJECT_INFO</h3>
+  <p>ALTER TABLE PROJECT RENAME TO PROJECT_INFO;</p>
+</div>
+<div class="question-card">
+  <h3>Q31: Remove all records from the STUDENT table</h3>
+  <p>TRUNCATE TABLE STUDENT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Delete all rows from EMPLOYEE table using TRUNCATE</h3>
+  <p>TRUNCATE TABLE EMPLOYEE;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Empty the CUSTOMER table quickly</h3>
+  <p>TRUNCATE TABLE CUSTOMER;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Remove all data from SALES table but keep structure</h3>
+  <p>TRUNCATE TABLE SALES;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Clear the PROJECT table</h3>
+  <p>TRUNCATE TABLE PROJECT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Create a table TRAINING with columns TID, TNAME, DURATION</h3>
+  <p>CREATE TABLE TRAINING (TID NUMBER, TNAME VARCHAR2(30), DURATION NUMBER);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Add column TRAINER_NAME VARCHAR2(40) to TRAINING</h3>
+  <p>ALTER TABLE TRAINING ADD TRAINER_NAME VARCHAR2(40);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Modify TNAME column size to VARCHAR2(60)</h3>
+  <p>ALTER TABLE TRAINING MODIFY TNAME VARCHAR2(60);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q39: Rename the TRAINING table to TRAINING_PROGRAM</h3>
+  <p>ALTER TABLE TRAINING RENAME TO TRAINING_PROGRAM;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Truncate the TRAINING_PROGRAM table</h3>
+  <p>TRUNCATE TABLE TRAINING_PROGRAM;</p>
+</div>
+<div class="question-card">
+  <h3>Q41: Drop the TRAINING_PROGRAM table</h3>
+  <p>DROP TABLE TRAINING_PROGRAM;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q42: Create a table EMP_PROJECT with columns: EMP_ID NUMBER, PROJECT_ID NUMBER, START_DATE DATE, END_DATE DATE, ROLE VARCHAR2(30). Then modify to increase ROLE to VARCHAR2(50) and add STATUS VARCHAR2(20)</h3>
+  <p>CREATE TABLE EMP_PROJECT (EMP_ID NUMBER, PROJECT_ID NUMBER, START_DATE DATE, END_DATE DATE, ROLE VARCHAR2(30));<br>
+     ALTER TABLE EMP_PROJECT MODIFY ROLE VARCHAR2(50);<br>
+     ALTER TABLE EMP_PROJECT ADD STATUS VARCHAR2(20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Create a table PRODUCT with columns: PID NUMBER, PNAME VARCHAR2(50), PRICE NUMBER, CATEGORY VARCHAR2(30). Then rename PNAME to PRODUCT_NAME and change PRICE to NUMBER(10,2)</h3>
+  <p>CREATE TABLE PRODUCT (PID NUMBER, PNAME VARCHAR2(50), PRICE NUMBER, CATEGORY VARCHAR2(30));<br>
+     ALTER TABLE PRODUCT RENAME COLUMN PNAME TO PRODUCT_NAME;<br>
+     ALTER TABLE PRODUCT MODIFY PRICE NUMBER(10,2);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Create a table ORDERS with columns: ORDER_ID NUMBER, CUSTOMER_ID NUMBER, ORDER_DATE DATE, TOTAL_AMOUNT NUMBER. Then: Add STATUS VARCHAR2(20), Drop TOTAL_AMOUNT, Add TOTAL_AMOUNT NUMBER(10,2) again</h3>
+  <p>CREATE TABLE ORDERS (ORDER_ID NUMBER, CUSTOMER_ID NUMBER, ORDER_DATE DATE, TOTAL_AMOUNT NUMBER);<br>
+     ALTER TABLE ORDERS ADD STATUS VARCHAR2(20);<br>
+     ALTER TABLE ORDERS DROP COLUMN TOTAL_AMOUNT;<br>
+     ALTER TABLE ORDERS ADD TOTAL_AMOUNT NUMBER(10,2);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Create a table EMP_TEMP from EMP with employees whose salary &gt; 2000. Then rename to EMP_HIGH_SALARY, Truncate, and Drop it</h3>
+  <p>CREATE TABLE EMP_TEMP AS SELECT * FROM EMP WHERE SALARY &gt; 2000;<br>
+     ALTER TABLE EMP_TEMP RENAME TO EMP_HIGH_SALARY;<br>
+     TRUNCATE TABLE EMP_HIGH_SALARY;<br>
+     DROP TABLE EMP_HIGH_SALARY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Create a table STUDENT_RECORD with columns: SID NUMBER, SNAME VARCHAR2(40), COURSE VARCHAR2(30), MARKS NUMBER. Then: Add GRADE CHAR(1), Modify MARKS to NUMBER(5,2), Rename COURSE to COURSE_NAME</h3>
+  <p>CREATE TABLE STUDENT_RECORD (SID NUMBER, SNAME VARCHAR2(40), COURSE VARCHAR2(30), MARKS NUMBER);<br>
+     ALTER TABLE STUDENT_RECORD ADD GRADE CHAR(1);<br>
+     ALTER TABLE STUDENT_RECORD MODIFY MARKS NUMBER(5,2);<br>
+     ALTER TABLE STUDENT_RECORD RENAME COLUMN COURSE TO COURSE_NAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Create a table EMP_ARCHIVE using EMP structure without data. Then: Add ARCHIVE_DATE DATE, Rename to EMP_HISTORY</h3>
+  <p>CREATE TABLE EMP_ARCHIVE AS SELECT * FROM EMP WHERE 1=0;<br>
+     ALTER TABLE EMP_ARCHIVE ADD ARCHIVE_DATE DATE;<br>
+     ALTER TABLE EMP_ARCHIVE RENAME TO EMP_HISTORY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Create a table DEPT_BACKUP from DEPT including all rows. Then: Drop LOC column, Add LOCATION VARCHAR2(40)</h3>
+  <p>CREATE TABLE DEPT_BACKUP AS SELECT * FROM DEPT;<br>
+     ALTER TABLE DEPT_BACKUP DROP COLUMN LOC;<br>
+     ALTER TABLE DEPT_BACKUP ADD LOCATION VARCHAR2(40);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Create a table SALES_DATA with columns: SALE_ID NUMBER, PRODUCT_ID NUMBER, SALE_DATE DATE, AMOUNT NUMBER. Then: Add REGION VARCHAR2(30), Modify AMOUNT to NUMBER(12,2), Rename to REGIONAL_SALES_DATA</h3>
+  <p>CREATE TABLE SALES_DATA (SALE_ID NUMBER, PRODUCT_ID NUMBER, SALE_DATE DATE, AMOUNT NUMBER);<br>
+     ALTER TABLE SALES_DATA ADD REGION VARCHAR2(30);<br>
+     ALTER TABLE SALES_DATA MODIFY AMOUNT NUMBER(12,2);<br>
+     ALTER TABLE SALES_DATA RENAME TO REGIONAL_SALES_DATA;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Create a table LOG_TABLE with columns: LOG_ID NUMBER, USER_NAME VARCHAR2(30), ACTION VARCHAR2(50), LOG_DATE DATE. Then: Truncate, Rename to SYSTEM_LOG, Drop permanently</h3>
+  <p>CREATE TABLE LOG_TABLE (LOG_ID NUMBER, USER_NAME VARCHAR2(30), ACTION VARCHAR2(50), LOG_DATE DATE);<br>
+     TRUNCATE TABLE LOG_TABLE;<br>
+     ALTER TABLE LOG_TABLE RENAME TO SYSTEM_LOG;<br>
+     DROP TABLE SYSTEM_LOG;</p>
+</div>
+
+
+
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

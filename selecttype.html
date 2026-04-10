@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Fetch employee name from EMP table for empno=7369 (SELECT INTO)</h3>
+  <p>DECLARE
+     v_name EMP.ENAME%TYPE;
+   BEGIN
+     SELECT ENAME INTO v_name FROM EMP WHERE EMPNO=7369;
+     DBMS_OUTPUT.PUT_LINE('Employee Name: '||v_name);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Retrieve salary of an employee and print it (SELECT INTO)</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=7499;
+     DBMS_OUTPUT.PUT_LINE('Salary: '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Fetch employee name and job using a single SELECT INTO</h3>
+  <p>DECLARE
+     v_name EMP.ENAME%TYPE;
+     v_job EMP.JOB%TYPE;
+   BEGIN
+     SELECT ENAME, JOB INTO v_name, v_job FROM EMP WHERE EMPNO=7521;
+     DBMS_OUTPUT.PUT_LINE(v_name||' - '||v_job);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display department number of an employee (SELECT INTO)</h3>
+  <p>DECLARE
+     v_dept EMP.DEPTNO%TYPE;
+   BEGIN
+     SELECT DEPTNO INTO v_dept FROM EMP WHERE EMPNO=7566;
+     DBMS_OUTPUT.PUT_LINE('Dept No: '||v_dept);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Fetch hiredate of an employee and display it (SELECT INTO)</h3>
+  <p>DECLARE
+     v_date EMP.HIREDATE%TYPE;
+   BEGIN
+     SELECT HIREDATE INTO v_date FROM EMP WHERE EMPNO=7839;
+     DBMS_OUTPUT.PUT_LINE('Hire Date: '||v_date);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Count total number of employees (SELECT INTO with aggregate)</h3>
+  <p>DECLARE
+     v_count NUMBER;
+   BEGIN
+     SELECT COUNT(*) INTO v_count FROM EMP;
+     DBMS_OUTPUT.PUT_LINE('Total Employees: '||v_count);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Declare a variable using %TYPE based on EMP.SAL</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=7900;
+     DBMS_OUTPUT.PUT_LINE('Salary: '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Declare variables for employee name and job using %TYPE</h3>
+  <p>DECLARE
+     v_name EMP.ENAME%TYPE;
+     v_job EMP.JOB%TYPE;
+   BEGIN
+     SELECT ENAME, JOB INTO v_name, v_job FROM EMP WHERE EMPNO=7934;
+     DBMS_OUTPUT.PUT_LINE(v_name||' - '||v_job);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Fetch salary using %TYPE variable and display it</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=7788;
+     DBMS_OUTPUT.PUT_LINE('Salary: '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Calculate annual salary using %TYPE variable</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=7839;
+     DBMS_OUTPUT.PUT_LINE('Annual Salary: '||(v_sal*12));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Update salary using %TYPE variable</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE := 5000;
+   BEGIN
+     UPDATE EMP SET SAL=v_sal WHERE EMPNO=7902;
+     DBMS_OUTPUT.PUT_LINE('Salary Updated');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Declare a variable using %TYPE from DEPT table</h3>
+  <p>DECLARE
+     v_dname DEPT.DNAME%TYPE;
+   BEGIN
+     SELECT DNAME INTO v_dname FROM DEPT WHERE DEPTNO=20;
+     DBMS_OUTPUT.PUT_LINE('Dept Name: '||v_dname);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Declare a record using %ROWTYPE for EMP table</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7566;
+     DBMS_OUTPUT.PUT_LINE(v_emp.ENAME||' '||v_emp.SAL||' '||v_emp.JOB);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Fetch complete employee record using %ROWTYPE</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7782;
+     DBMS_OUTPUT.PUT_LINE(v_emp.ENAME||' '||v_emp.SAL||' '||v_emp.DEPTNO||' '||v_emp.HIREDATE);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display employee name, salary, and job using %ROWTYPE</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7698;
+     DBMS_OUTPUT.PUT_LINE(v_emp.ENAME||' '||v_emp.SAL||' '||v_emp.JOB);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Update salary using %ROWTYPE variable</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7654;
+     v_emp.SAL := v_emp.SAL+500;
+     UPDATE EMP SET SAL=v_emp.SAL WHERE EMPNO=v_emp.EMPNO;
+     DBMS_OUTPUT.PUT_LINE('Salary Updated: '||v_emp.SAL);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Insert a record using %ROWTYPE</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     v_emp.EMPNO := 9001;
+     v_emp.ENAME := 'ANISHA';
+     v_emp.JOB := 'CLERK';
+     v_emp.SAL := 2500;
+     v_emp.DEPTNO := 20;
+     INSERT INTO EMP VALUES v_emp;
+     DBMS_OUTPUT.PUT_LINE('Record Inserted');
+   END;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

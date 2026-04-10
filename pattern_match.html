@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display employees whose name starts with A</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display employees whose name starts with S</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'S%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display employees whose name ends with N</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%N';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display employees whose name ends with R</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%R';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display employees whose name contains LL</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%LL%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display employees whose name contains AR</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%AR%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display employees whose job starts with M</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE 'M%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employees whose job ends with AN</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%AN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display employees whose job contains CL</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%CL%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display departments whose location starts with N</h3>
+  <p>SELECT * FROM DEPT WHERE LOC LIKE 'N%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employees whose name has exactly 4 characters</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '____';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Display employees whose name has exactly 5 characters</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '_____';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display employees whose name has A as the second character</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '_A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Display employees whose name has L as the third character</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '__L%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display employees whose job has exactly 6 characters</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '______';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display employees whose name starts with any letter but ends with N</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%N';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Display employees whose job starts with any one character and ends with ER</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '_%ER';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display employees whose name has A as first and N as last character</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'A%N';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Display employees whose name has exactly 2 characters before 'E'</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '__E%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Display employees whose name has exactly 1 character after 'A'</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A_';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display employees whose name starts with A and ends with N</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'A%N';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display employees whose name contains E anywhere</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%E%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display employees whose name does not contain A</h3>
+  <p>SELECT * FROM EMP WHERE ENAME NOT LIKE '%A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Display employees whose job contains MAN</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%MAN%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Display employees whose job does not start with C</h3>
+  <p>SELECT * FROM EMP WHERE JOB NOT LIKE 'C%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display employees whose name contains two L consecutively</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%LL%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Display employees whose name starts with J and has S anywhere</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'J%S%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Display employees whose job starts with S and ends with AN</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE 'S%AN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display employees whose name contains A as the second last character</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A_';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Display employees whose name contains exactly one character between A and E</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A_E%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Display employees whose name starts with S and salary &gt; 2000</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'S%' AND SAL &gt; 2000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Display employees whose job ends with MAN and department is 20</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%MAN' AND DEPTNO = 20;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Display employees whose name contains A and commission is NULL</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A%' AND COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Display employees whose job starts with C and salary &lt; 1500</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE 'C%' AND SAL &lt; 1500;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Display employees whose name ends with S and hired after 1981</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%S' AND HIREDATE &gt; TO_DATE('01-JAN-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Display employees whose name starts with M and department is not 10</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'M%' AND DEPTNO &lt;&gt; 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Display employees whose job contains ER and salary between 2000 and 3000</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%ER%' AND SAL BETWEEN 2000 AND 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Display employees whose name starts with A or job starts with S</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'A%' OR JOB LIKE 'S%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q39: Display employees whose name contains I and manager is NOT NULL</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%I%' AND MGR IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Display employees whose name ends with N and commission is NOT NULL</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%N' AND COMM IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q41: Display employee name as Name whose name starts with S, ordered alphabetically</h3>
+  <p>SELECT ENAME AS Name FROM EMP WHERE ENAME LIKE 'S%' ORDER BY ENAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q42: Display employee name and salary as Pay whose name contains A, ordered by salary</h3>
+  <p>SELECT ENAME, SAL AS Pay FROM EMP WHERE ENAME LIKE '%A%' ORDER BY SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Display employees whose job starts with M, ordered by job and salary</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE 'M%' ORDER BY JOB, SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Display employees whose name ends with E, ordered by hire date</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%E' ORDER BY HIREDATE;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Display employee name and annual salary for employees whose name starts with J</h3>
+  <p>SELECT ENAME, SAL*12 AS Annual_Salary FROM EMP WHERE ENAME LIKE 'J%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Display employees whose name contains R, ordered by department number</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%R%' ORDER BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Display employee name as Employee whose job ends with AN</h3>
+  <p>SELECT ENAME AS Employee FROM EMP WHERE JOB LIKE '%AN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Display employees whose name starts with K, ordered by salary descending</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'K%' ORDER BY SAL DESC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Display employees whose name contains L, ordered by name and salary</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%L%' ORDER BY ENAME, SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Display employees whose job starts with C, ordered by job</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE 'C%' ORDER BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q51: Display employees whose name has exactly 6 characters and ends with R</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '_____R';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q52: Display employees whose name has A as the third character from start</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '__A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q53: Display employees whose name has E as the second character from end</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%E_';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q54: Display employees whose name contains at least two characters before 'A'</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '__%A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q55: Display employees whose job contains exactly one 'A'</h3>
+  <p>SELECT * FROM EMP WHERE JOB LIKE '%A%' AND JOB NOT LIKE '%A%A%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q56: Display employees whose name does not start with a vowel</h3>
+  <p>SELECT * FROM EMP WHERE ENAME NOT LIKE 'A%' 
+                        AND ENAME NOT LIKE 'E%' 
+                        AND ENAME NOT LIKE 'I%' 
+                        AND ENAME NOT LIKE 'O%' 
+                        AND ENAME NOT LIKE 'U%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q57: Display employees whose job does not contain ER</h3>
+  <p>SELECT * FROM EMP WHERE JOB NOT LIKE '%ER%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q58: Display employees whose name starts and ends with the same character</h3>
+  <p>SELECT * FROM EMP WHERE SUBSTR(ENAME,1,1) = SUBSTR(ENAME,-1,1);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q59: Display employees whose name contains A and E in any order</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A%' AND ENAME LIKE '%E%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q60: Display employees whose name contains A but not as the first character</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE '%A%' AND ENAME NOT LIKE 'A%';</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

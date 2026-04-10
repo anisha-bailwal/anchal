@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS Categories - SQL & PL/SQL</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="top-header">
+        <h2><i class="fas fa-database"></i> BCA 2nd Year Practical</h2>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- SIDEBAR WITH CATEGORIES -->
+        <div class="sidebar">
+            <h2><i class="fas fa-list"></i> Categories</h2>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Home
+            </a>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'DDL.html', 'DATA DEFINITION LANGUAGE')">
+                <i class="fas fa-mouse-pointer"></i> DDL
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'DML.html', 'DATA MANIPULATION LANGUAGE')">
+                <i class="fas fa-file-code"></i> DML
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'basic_select.html', 'Basic SELECT')">
+                <i class="fas fa-search"></i> SELECT
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'where.html', 'WHERE CLAUSE, ORDER BY & ALIAS')">
+                <i class="fas fa-filter"></i> WHERE
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'pattern_match.html', 'PATTERN MATCHING (LIKE)')">
+                <i class="fas fa-search-plus"></i> LIKE
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'group_function.html', 'GROUP FUNCTIONS & HAVING')">
+                <i class="fas fa-calculator"></i> GROUP BY
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'subqueries.html', 'SUBQUERIES')">
+                <i class="fas fa-code"></i> Subqueries
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'scalor.html', 'SCALAR FUNCTIONS')">
+                <i class="fas fa-function"></i> Functions
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'joins.html', 'JOINS')">
+                <i class="fas fa-link"></i> JOINS
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'set.html', 'SET OPERATORS')">
+                <i class="fas fa-layer-group"></i> SET OPS
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'views.html', 'VIEWS')">
+                <i class="fas fa-eye"></i> VIEWS
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'tcl_tdl.html', 'TCL & DCL')">
+                <i class="fas fa-exchange-alt"></i> TCL/DCL
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'sql.html', 'PL/SQL BASICS')">
+                <i class="fas fa-cogs"></i> PL/SQL
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'ifelse.html', 'DECISION CONTROL')">
+                <i class="fas fa-list"></i> IF-ELSE
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'loops.html', 'ITERATIVE LOOPS')">
+                <i class="fas fa-redo"></i> LOOPS
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'selecttype.html', '%TYPE & %ROWTYPE')">
+                <i class="fas fa-database"></i> Types
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'cursors.html', 'CURSORS')">
+                <i class="fas fa-mouse-pointer"></i> Cursors
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'storedproc.html', 'PROCEDURES & FUNCTIONS')">
+                <i class="fas fa-file-code"></i> Procedures
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'packages.html', 'PACKAGES')">
+                <i class="fas fa-box"></i> Packages
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'exception.html', 'EXCEPTION HANDLING')">
+                <i class="fas fa-exclamation-circle"></i> Exceptions
+            </button>
+            
+            <button class="sidebar-btn" onclick="loadContent(this, 'trigger.html', 'TRIGGERS')">
+                <i class="fas fa-bolt"></i> Triggers
+            </button>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <h1 id="contentTitle">Select a Category</h1>
+            </div>
+            <div id="contentArea" class="content-area">
+                <div class="welcome-message">
+                    <i class="fas fa-hand-paper"></i>
+                   
+                    <p>Select a category from the left sidebar to view detailed content and examples.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <p>Name - <strong>Anisha</strong> | Roll No. - <strong>7022/24</strong></p>
+    </div>
+
+    <script>
+        function loadContent(button, file, title) {
+            const contentArea = document.getElementById('contentArea');
+            const contentTitle = document.getElementById('contentTitle');
+            
+            // Show loading state
+            contentTitle.textContent = title;
+            contentArea.innerHTML = '<div style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #3b82f6;"></i><p style="margin-top: 20px; color: #64748b;">Loading...</p></div>';
+            
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File not found: ' + file);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    contentArea.innerHTML = data;
+                    
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Scroll to top
+                    contentArea.scrollTop = 0;
+                    
+                    // Initialize toggle buttons for solutions
+                    initializeToggleButtons();
+                    
+                    console.log('Content loaded successfully: ' + file);
+                })
+                .catch(error => {
+                    contentArea.innerHTML = `
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #dc2626; margin-bottom: 1rem;"></i>
+                            <h3 style="color: #dc2626; margin-bottom: 0.5rem;">Error Loading Content</h3>
+                            <p style="color: #7f8c8d; margin-bottom: 1rem;">Could not load: <strong>${file}</strong></p>
+                            <p style="color: #94a3b8; font-size: 0.9rem;">Make sure the file exists in the same directory.</p>
+                        </div>
+                    `;
+                    console.error('Loading error:', error);
+                });
+        }
+
+        // Initialize toggle buttons for solutions
+        function initializeToggleButtons() {
+            document.querySelectorAll('.toggle-solution').forEach(button => {
+                button.addEventListener('click', function() {
+                    const solution = this.nextElementSibling;
+                    solution.classList.toggle('hidden');
+                    
+                    // Change icon
+                    const icon = this.querySelector('i');
+                    if (solution.classList.contains('hidden')) {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializeToggleButtons);
+    </script>
+</body>
+</html>

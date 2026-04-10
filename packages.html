@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Package specification and body to display "Hello Oracle" (Package Basic Structure)</h3>
+  <p>CREATE OR REPLACE PACKAGE hello_pkg IS
+     PROCEDURE say_hello;
+   END hello_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY hello_pkg IS
+     PROCEDURE say_hello IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Hello Oracle');
+     END;
+   END hello_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Package with one procedure to display employee details (Package + Procedure)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_pkg IS
+     PROCEDURE show_emp(p_empno NUMBER);
+   END emp_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_pkg IS
+     PROCEDURE show_emp(p_empno NUMBER) IS
+       v_name EMP.ENAME%TYPE;
+       v_job EMP.JOB%TYPE;
+     BEGIN
+       SELECT ENAME,JOB INTO v_name,v_job FROM EMP WHERE EMPNO=p_empno;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_job);
+     END;
+   END emp_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Package containing a function to return square of a number (Package + Function)</h3>
+  <p>CREATE OR REPLACE PACKAGE math_pkg IS
+     FUNCTION square_num(p_num NUMBER) RETURN NUMBER;
+   END math_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY math_pkg IS
+     FUNCTION square_num(p_num NUMBER) RETURN NUMBER IS
+     BEGIN
+       RETURN p_num*p_num;
+     END;
+   END math_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Package with both procedure and function (Package Structure)</h3>
+  <p>CREATE OR REPLACE PACKAGE mix_pkg IS
+     PROCEDURE say_hello;
+     FUNCTION square_num(p_num NUMBER) RETURN NUMBER;
+   END mix_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY mix_pkg IS
+     PROCEDURE say_hello IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Hello Oracle');
+     END;
+     FUNCTION square_num(p_num NUMBER) RETURN NUMBER IS
+     BEGIN
+       RETURN p_num*p_num;
+     END;
+   END mix_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Package to group employee-related operations (Package Design)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_ops IS
+     PROCEDURE add_emp(p_empno NUMBER, p_name VARCHAR2, p_job VARCHAR2, p_sal NUMBER, p_deptno NUMBER);
+     PROCEDURE del_emp(p_empno NUMBER);
+     FUNCTION get_salary(p_empno NUMBER) RETURN NUMBER;
+   END emp_ops;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_ops IS
+     PROCEDURE add_emp(...) IS BEGIN INSERT INTO EMP VALUES(...); END;
+     PROCEDURE del_emp(p_empno NUMBER) IS BEGIN DELETE FROM EMP WHERE EMPNO=p_empno; END;
+     FUNCTION get_salary(p_empno NUMBER) RETURN NUMBER IS v_sal NUMBER; BEGIN SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=p_empno; RETURN v_sal; END;
+   END emp_ops;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Package with a global variable and display its value (Package Variable)</h3>
+  <p>CREATE OR REPLACE PACKAGE var_pkg IS
+     g_var NUMBER:=100;
+     PROCEDURE show_var;
+   END var_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY var_pkg IS
+     PROCEDURE show_var IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Global Var='||g_var);
+     END;
+   END var_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Package to store company name as constant and display it (Package Constant)</h3>
+  <p>CREATE OR REPLACE PACKAGE const_pkg IS
+     c_company CONSTANT VARCHAR2(20):='Oracle';
+     PROCEDURE show_company;
+   END const_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY const_pkg IS
+     PROCEDURE show_company IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Company='||c_company);
+     END;
+   END const_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Package that uses a variable to count number of procedure calls (Package State Management)</h3>
+  <p>CREATE OR REPLACE PACKAGE call_pkg IS
+     g_count NUMBER:=0;
+     PROCEDURE track_call;
+   END call_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY call_pkg IS
+     PROCEDURE track_call IS
+     BEGIN
+       g_count:=g_count+1;
+       DBMS_OUTPUT.PUT_LINE('Procedure called '||g_count||' times');
+     END;
+   END call_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Package with a global variable used in multiple procedures (Shared Variable in Package)</h3>
+  <p>CREATE OR REPLACE PACKAGE share_pkg IS
+     g_total NUMBER:=0;
+     PROCEDURE add_salary(p_sal NUMBER);
+     PROCEDURE show_total;
+   END share_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY share_pkg IS
+     PROCEDURE add_salary(p_sal NUMBER) IS BEGIN g_total:=g_total+p_sal; END;
+     PROCEDURE show_total IS BEGIN DBMS_OUTPUT.PUT_LINE('Total='||g_total); END;
+   END share_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Package procedure to fetch employee details using empno (Package Procedure)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_detail_pkg IS
+     PROCEDURE get_emp(p_empno NUMBER);
+   END emp_detail_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_detail_pkg IS
+     PROCEDURE get_emp(p_empno NUMBER) IS
+       v_name EMP.ENAME%TYPE;
+       v_job EMP.JOB%TYPE;
+     BEGIN
+       SELECT ENAME,JOB INTO v_name,v_job FROM EMP WHERE EMPNO=p_empno;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_job);
+     END;
+   END emp_detail_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Package procedure to insert employee record (Package + INSERT)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_insert_pkg IS
+     PROCEDURE add_emp(p_empno NUMBER, p_name VARCHAR2, p_job VARCHAR2, p_sal NUMBER, p_deptno NUMBER);
+   END emp_insert_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_insert_pkg IS
+     PROCEDURE add_emp(...) IS
+     BEGIN
+       INSERT INTO EMP VALUES(...);
+     END;
+   END emp_insert_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Package procedure to update employee salary (Package + UPDATE)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_update_pkg IS
+     PROCEDURE update_sal(p_empno NUMBER, p_sal NUMBER);
+   END emp_update_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_update_pkg IS
+     PROCEDURE update_sal(p_empno NUMBER, p_sal NUMBER) IS
+     BEGIN
+       UPDATE EMP SET SAL=p_sal WHERE EMPNO=p_empno;
+     END;
+   END emp_update_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Package procedure to delete employee record (Package + DELETE)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_delete_pkg IS
+     PROCEDURE del_emp(p_empno NUMBER);
+   END emp_delete_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_delete_pkg IS
+     PROCEDURE del_emp(p_empno NUMBER) IS
+     BEGIN
+       DELETE FROM EMP WHERE EMPNO=p_empno;
+     END;
+   END emp_delete_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Package procedure to increase salary of all employees by 10% (Package + Business Logic)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_raise_pkg IS
+     PROCEDURE raise_sal;
+   END emp_raise_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_raise_pkg IS
+     PROCEDURE raise_sal IS
+     BEGIN
+       UPDATE EMP SET SAL=SAL*1.1;
+     END;
+   END emp_raise_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Package function to return employee salary (Package Function)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_func_pkg IS
+     FUNCTION get_sal(p_empno NUMBER) RETURN NUMBER;
+   END emp_func_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_func_pkg IS
+     FUNCTION get_sal(p_empno NUMBER) RETURN NUMBER IS v_sal NUMBER;
+     BEGIN
+       SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=p_empno;
+       RETURN v_sal;
+     END;
+   END emp_func_pkg;</p>
+</div>
+<div class="question-card">
+  <h3>Q16: Package function to return total employees (Package + Aggregate Function)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_count_pkg IS
+     FUNCTION total_emps RETURN NUMBER;
+   END emp_count_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_count_pkg IS
+     FUNCTION total_emps RETURN NUMBER IS v_cnt NUMBER;
+     BEGIN
+       SELECT COUNT(*) INTO v_cnt FROM EMP;
+       RETURN v_cnt;
+     END;
+   END emp_count_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Package function to return maximum salary (Package + Aggregate Function)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_max_pkg IS
+     FUNCTION max_sal RETURN NUMBER;
+   END emp_max_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_max_pkg IS
+     FUNCTION max_sal RETURN NUMBER IS v_sal NUMBER;
+     BEGIN
+       SELECT MAX(SAL) INTO v_sal FROM EMP;
+       RETURN v_sal;
+     END;
+   END emp_max_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Package function to calculate bonus (10% of salary) (Package Function + Logic)</h3>
+  <p>CREATE OR REPLACE PACKAGE bonus_pkg IS
+     FUNCTION calc_bonus(p_sal NUMBER) RETURN NUMBER;
+   END bonus_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY bonus_pkg IS
+     FUNCTION calc_bonus(p_sal NUMBER) RETURN NUMBER IS
+     BEGIN
+       RETURN p_sal*0.1;
+     END;
+   END bonus_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Package that uses cursor to display all employees (Package + Cursor)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_cursor_pkg IS
+     PROCEDURE show_emps;
+   END emp_cursor_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_cursor_pkg IS
+     PROCEDURE show_emps IS
+       CURSOR c IS SELECT ENAME FROM EMP;
+     BEGIN
+       FOR rec IN c LOOP
+         DBMS_OUTPUT.PUT_LINE(rec.ENAME);
+       END LOOP;
+     END;
+   END emp_cursor_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Package with parameterized cursor to fetch employees by department (Package + Parameterized Cursor)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_param_pkg IS
+     PROCEDURE show_dept_emps(p_deptno NUMBER);
+   END emp_param_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_param_pkg IS
+     PROCEDURE show_dept_emps(p_deptno NUMBER) IS
+       CURSOR c(dno NUMBER) IS SELECT ENAME FROM EMP WHERE DEPTNO=dno;
+     BEGIN
+       FOR rec IN c(p_deptno) LOOP
+         DBMS_OUTPUT.PUT_LINE(rec.ENAME);
+       END LOOP;
+     END;
+   END emp_param_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Package procedure that loops through employees using cursor FOR LOOP (Package + Cursor Loop)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_loop_pkg IS
+     PROCEDURE show_all;
+   END emp_loop_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_loop_pkg IS
+     PROCEDURE show_all IS
+     BEGIN
+       FOR rec IN (SELECT ENAME,SAL FROM EMP) LOOP
+         DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+       END LOOP;
+     END;
+   END emp_loop_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Package with private procedure (only in body, not in specification)</h3>
+  <p>CREATE OR REPLACE PACKAGE priv_pkg IS
+     PROCEDURE call_public;
+   END priv_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY priv_pkg IS
+     PROCEDURE private_proc IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Private Procedure');
+     END;
+     PROCEDURE call_public IS
+     BEGIN
+       private_proc;
+     END;
+   END priv_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Package with overloaded procedures (Procedure Overloading)</h3>
+  <p>CREATE OR REPLACE PACKAGE overload_pkg IS
+     PROCEDURE show_emp(p_empno NUMBER);
+     PROCEDURE show_emp(p_name VARCHAR2);
+   END overload_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY overload_pkg IS
+     PROCEDURE show_emp(p_empno NUMBER) IS BEGIN DBMS_OUTPUT.PUT_LINE('Empno='||p_empno); END;
+     PROCEDURE show_emp(p_name VARCHAR2) IS BEGIN DBMS_OUTPUT.PUT_LINE('Name='||p_name); END;
+   END overload_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Package with function overloading (Function Overloading)</h3>
+  <p>CREATE OR REPLACE PACKAGE func_over_pkg IS
+     FUNCTION square(p_num NUMBER) RETURN NUMBER;
+     FUNCTION square(p_num NUMBER, p_pow NUMBER) RETURN NUMBER;
+   END func_over_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY func_over_pkg IS
+     FUNCTION square(p_num NUMBER) RETURN NUMBER IS BEGIN RETURN p_num*p_num; END;
+     FUNCTION square(p_num NUMBER, p_pow NUMBER) RETURN NUMBER IS BEGIN RETURN POWER(p_num,p_pow); END;
+   END func_over_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Package to maintain employee audit logs</h3>
+  <p>CREATE OR REPLACE PACKAGE audit_pkg IS
+     PROCEDURE log_insert(p_empno NUMBER);
+   END audit_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY audit_pkg IS
+     PROCEDURE log_insert(p_empno NUMBER) IS
+     BEGIN
+       INSERT INTO EMP_AUDIT VALUES(p_empno,SYSDATE,'INSERT');
+     END;
+   END audit_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Package with initialization block (executed once)</h3>
+  <p>CREATE OR REPLACE PACKAGE init_pkg IS
+     PROCEDURE show_msg;
+   END init_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY init_pkg IS
+     PROCEDURE show_msg IS BEGIN DBMS_OUTPUT.PUT_LINE('Init Package'); END;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Package Initialized');
+   END init_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Package to perform all CRUD operations on EMP table (Full Package Design)</h3>
+  <p>CREATE OR REPLACE PACKAGE emp_crud IS
+     PROCEDURE add_emp(...);
+     PROCEDURE upd_emp(...);
+     PROCEDURE del_emp(p_empno NUMBER);
+     FUNCTION get_emp(p_empno NUMBER) RETURN VARCHAR2;
+   END emp_crud;
+   /
+   CREATE OR REPLACE PACKAGE BODY emp_crud IS
+     PROCEDURE add_emp(...) IS BEGIN INSERT INTO EMP VALUES(...); END;
+     PROCEDURE upd_emp(...) IS BEGIN UPDATE EMP SET ... WHERE EMPNO=...; END;
+     PROCEDURE del_emp(p_empno NUMBER) IS BEGIN DELETE FROM EMP WHERE EMPNO=p_empno; END;
+     FUNCTION get_emp(p_empno NUMBER) RETURN VARCHAR2 IS v_name VARCHAR2(20); BEGIN SELECT ENAME INTO v_name FROM EMP WHERE EMPNO=p_empno; RETURN v_name; END;
+   END emp_crud;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Package that calculates salary, bonus, and tax using multiple functions (Business Logic Package)</h3>
+  <p>CREATE OR REPLACE PACKAGE finance_pkg IS
+     FUNCTION calc_bonus(p_sal NUMBER) RETURN NUMBER;
+     FUNCTION calc_tax(p_sal NUMBER) RETURN NUMBER;
+   END finance_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY finance_pkg IS
+     FUNCTION calc_bonus(p_sal NUMBER) RETURN NUMBER IS BEGIN RETURN p_sal*0.1; END;
+     FUNCTION calc_tax(p_sal NUMBER) RETURN NUMBER IS BEGIN RETURN p_sal*0.2; END;
+   END finance_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Package to validate employee data before insert/update (Validation Logic)</h3>
+  <p>CREATE OR REPLACE PACKAGE validate_pkg IS
+     FUNCTION valid_sal(p_sal NUMBER) RETURN BOOLEAN;
+   END validate_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY validate_pkg IS
+     FUNCTION valid_sal(p_sal NUMBER) RETURN BOOLEAN IS
+     BEGIN
+       RETURN p_sal&gt;0;
+     END;
+   END validate_pkg;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Package that interacts with multiple tables (EMP, DEPT) (Multi-table Package)</h3>
+  <p>CREATE OR REPLACE PACKAGE multi_pkg IS
+     PROCEDURE show_emp_dept(p_empno NUMBER);
+   END multi_pkg;
+   /
+   CREATE OR REPLACE PACKAGE BODY multi_pkg IS
+     PROCEDURE show_emp_dept(p_empno NUMBER) IS
+       v_name EMP.ENAME%TYPE;
+       v_dname DEPT.DNAME%TYPE;
+     BEGIN
+       SELECT E.ENAME,D.DNAME INTO v_name,v_dname FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DEPTNO WHERE E.EMPNO=p_empno;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_dname);
+     END;
+     </p>
+     </div>
+          </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

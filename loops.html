@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Print numbers from 1 to 5 using SIMPLE LOOP</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i+1;
+       EXIT WHEN i&gt;5;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display numbers from 10 to 1 in reverse order using SIMPLE LOOP</h3>
+  <p>DECLARE
+     i NUMBER := 10;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i-1;
+       EXIT WHEN i&lt;1;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Calculate sum of numbers from 1 to 10 using SIMPLE LOOP</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+     s NUMBER := 0;
+   BEGIN
+     LOOP
+       s := s+i;
+       i := i+1;
+       EXIT WHEN i&gt;10;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Sum='||s);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Print multiplication table of a number using SIMPLE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 5;
+     i NUMBER := 1;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(n||' x '||i||' = '||(n*i));
+       i := i+1;
+       EXIT WHEN i&gt;10;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Print even numbers between 1 and 20 using SIMPLE LOOP</h3>
+  <p>DECLARE
+     i NUMBER := 2;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i+2;
+       EXIT WHEN i&gt;20;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Exit loop when number becomes greater than 50 (SIMPLE LOOP + EXIT)</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i+5;
+       EXIT WHEN i&gt;50;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Print numbers from 1 to 10 using WHILE LOOP</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+   BEGIN
+     WHILE i&lt;=10 LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i+1;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Calculate factorial of a number using WHILE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 5;
+     fact NUMBER := 1;
+   BEGIN
+     WHILE n&gt;0 LOOP
+       fact := fact*n;
+       n := n-1;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Factorial='||fact);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display sum of digits of a number using WHILE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 1234;
+     sum NUMBER := 0;
+   BEGIN
+     WHILE n&gt;0 LOOP
+       sum := sum+MOD(n,10);
+       n := TRUNC(n/10);
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Sum of digits='||sum);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Reverse a number using WHILE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 1234;
+     rev NUMBER := 0;
+   BEGIN
+     WHILE n&gt;0 LOOP
+       rev := rev*10+MOD(n,10);
+       n := TRUNC(n/10);
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Reverse='||rev);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Check whether a number is palindrome using WHILE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 121;
+     temp NUMBER := n;
+     rev NUMBER := 0;
+   BEGIN
+     WHILE temp&gt;0 LOOP
+       rev := rev*10+MOD(temp,10);
+       temp := TRUNC(temp/10);
+     END LOOP;
+     IF rev=n THEN
+       DBMS_OUTPUT.PUT_LINE('Palindrome');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Not Palindrome');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Print Fibonacci series up to N terms using WHILE LOOP</h3>
+  <p>DECLARE
+     n NUMBER := 10;
+     a NUMBER := 0;
+     b NUMBER := 1;
+     i NUMBER := 1;
+   BEGIN
+     WHILE i&lt;=n LOOP
+       DBMS_OUTPUT.PUT_LINE(a);
+       a := a+b;
+       b := a-b;
+       i := i+1;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Print numbers from 1 to 10 using FOR LOOP</h3>
+  <p>BEGIN
+     FOR i IN 1..10 LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Print numbers in reverse order using FOR LOOP</h3>
+  <p>BEGIN
+     FOR i IN REVERSE 1..10 LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Calculate sum of first 10 natural numbers using FOR LOOP</h3>
+  <p>DECLARE
+     s NUMBER := 0;
+   BEGIN
+     FOR i IN 1..10 LOOP
+       s := s+i;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Sum='||s);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display multiplication table of 5 using FOR LOOP</h3>
+  <p>BEGIN
+     FOR i IN 1..10 LOOP
+       DBMS_OUTPUT.PUT_LINE('5 x '||i||' = '||(5*i));
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Print squares of numbers from 1 to 10 using FOR LOOP</h3>
+  <p>BEGIN
+     FOR i IN 1..10 LOOP
+       DBMS_OUTPUT.PUT_LINE('Square of '||i||' = '||(i*i));
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display all odd numbers between 1 and 50 using FOR LOOP</h3>
+  <p>BEGIN
+     FOR i IN 1..50 LOOP
+       IF MOD(i,2)&lt;&gt;0 THEN
+         DBMS_OUTPUT.PUT_LINE(i);
+       END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Print a * ** *** **** pattern using nested loops</h3>
+  <p>BEGIN
+     FOR i IN 1..4 LOOP
+       FOR j IN 1..i LOOP
+         DBMS_OUTPUT.PUT('*');
+       END LOOP;
+       DBMS_OUTPUT.PUT_LINE('');
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Print multiplication tables from 1 to 5 using nested loops</h3>
+  <p>BEGIN
+     FOR n IN 1..5 LOOP
+       FOR i IN 1..10 LOOP
+         DBMS_OUTPUT.PUT_LINE(n||' x '||i||' = '||(n*i));
+       END LOOP;
+       DBMS_OUTPUT.PUT_LINE('---');
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display number pattern: 1 / 12 / 123 / 1234 using nested loops</h3>
+  <p>BEGIN
+     FOR i IN 1..4 LOOP
+       FOR j IN 1..i LOOP
+         DBMS_OUTPUT.PUT(j);
+       END LOOP;
+       DBMS_OUTPUT.PUT_LINE('');
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Print numbers from 1 to 20 but skip multiples of 4 (LOOP + CONTINUE)</h3>
+  <p>BEGIN
+     FOR i IN 1..20 LOOP
+       IF MOD(i,4)=0 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Stop printing numbers once the sum exceeds 100 (LOOP + EXIT)</h3>
+  <p>DECLARE
+     sum NUMBER := 0;
+   BEGIN
+     FOR i IN 1..50 LOOP
+       sum := sum+i;
+       DBMS_OUTPUT.PUT_LINE('Sum='||sum);
+       IF sum&gt;100 THEN EXIT; END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Print numbers and exit when number divisible by 7 is found (LOOP + EXIT)</h3>
+  <p>BEGIN
+     FOR i IN 1..20 LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       IF MOD(i,7)=0 THEN EXIT; END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Loop through employee IDs from EMP table and display them (FOR LOOP + Table Data)</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT EMPNO FROM EMP;
+     v_id EMP.EMPNO%TYPE;
+   BEGIN
+     FOR rec IN c LOOP
+       DBMS_OUTPUT.PUT_LINE('Emp ID: '||rec.EMPNO);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Increase salary of employees by 10% using loop (LOOP + UPDATE)</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT EMPNO,SAL FROM EMP;
+     v_id EMP.EMPNO%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c;
+     LOOP
+       FETCH c INTO v_id,v_sal;
+       EXIT WHEN c%NOTFOUND;
+       UPDATE EMP SET SAL=SAL*1.1 WHERE EMPNO=v_id;
+     END LOOP;
+     CLOSE c;
+     DBMS_OUTPUT.PUT_LINE('Salaries Updated');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Display employees whose salary &gt; 3000 using loop (LOOP + CONDITION)</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT ENAME,SAL FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c;
+     LOOP
+       FETCH c INTO v_name,v_sal;
+       EXIT WHEN c%NOTFOUND;
+       IF v_sal&gt;3000 THEN
+         DBMS_OUTPUT.PUT_LINE(v_name||' '||v_sal);
+       END IF;
+     END LOOP;
+     CLOSE c;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Count total number of employees using loop (LOOP + COUNT)</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT EMPNO FROM EMP;
+     v_id EMP.EMPNO%TYPE;
+     cnt NUMBER := 0;
+   BEGIN
+     OPEN c;
+     LOOP
+       FETCH c INTO v_id;
+       EXIT WHEN c%NOTFOUND;
+       cnt := cnt+1;
+     END LOOP;
+     CLOSE c;
+     DBMS_OUTPUT.PUT_LINE('Total Employees='||cnt);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Use all three loops (SIMPLE, WHILE, FOR) in one program</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+     j NUMBER := 1;
+   BEGIN
+     -- SIMPLE LOOP
+     LOOP
+       DBMS_OUTPUT.PUT_LINE('Simple:'||i);
+       i := i+1;
+       EXIT WHEN i&gt;3;
+     END LOOP;
+
+     -- WHILE LOOP
+     WHILE j&lt;=3 LOOP
+       DBMS_OUTPUT.PUT_LINE('While:'||j);
+       j := j+1;
+     END LOOP;
+
+     -- FOR LOOP
+     FOR k IN 1..3 LOOP
+       DBMS_OUTPUT.PUT_LINE('For:'||k);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Generate prime numbers between 1 and 50 (LOOP + LOGIC)</h3>
+  <p>DECLARE
+     flag BOOLEAN;
+   BEGIN
+     FOR n IN 2..50 LOOP
+       flag := TRUE;
+       FOR i IN 2..TRUNC(SQRT(n)) LOOP
+         IF MOD(n,i)=0 THEN
+           flag := FALSE;
+           EXIT;
+         END IF;
+       END LOOP;
+       IF flag THEN DBMS_OUTPUT.PUT_LINE(n); END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Simulate ATM withdrawal attempts — 3 attempts using loop</h3>
+  <p>DECLARE
+     pin NUMBER := 1234;
+     entered NUMBER;
+     attempts NUMBER := 0;
+   BEGIN
+     LOOP
+       entered := 1234; -- simulate input
+       attempts := attempts+1;
+       IF entered=pin THEN
+         DBMS_OUTPUT.PUT_LINE('Access Granted');
+         EXIT;
+       ELSE
+         DBMS_OUTPUT.PUT_LINE('Wrong PIN');
+       END IF;
+       EXIT WHEN attempts=3;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Calculate sum of even and odd numbers separately using loop</h3>
+  <p>DECLARE
+     even_sum NUMBER := 0;
+     odd_sum NUMBER := 0;
+   BEGIN
+     FOR i IN 1..20 LOOP
+       IF MOD(i,2)=0 THEN
+         even_sum := even_sum+i;
+       ELSE
+         odd_sum := odd_sum+i;
+       END IF;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Even Sum='||even_sum);
+     DBMS_OUTPUT.PUT_LINE('Odd Sum='||odd_sum);
+   END;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

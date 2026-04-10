@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Write a PL/SQL block to check if a number is positive (IF Statement)</h3>
+  <p>DECLARE
+     n NUMBER := 10;
+   BEGIN
+     IF n &gt; 0 THEN
+       DBMS_OUTPUT.PUT_LINE('Positive');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Check if an employee's salary is greater than 3000 (IF Statement)</h3>
+  <p>DECLARE
+     v_sal NUMBER := 3500;
+   BEGIN
+     IF v_sal &gt; 3000 THEN
+       DBMS_OUTPUT.PUT_LINE('Salary above 3000');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Check if a given number is even (IF Statement)</h3>
+  <p>DECLARE
+     n NUMBER := 8;
+   BEGIN
+     IF MOD(n,2)=0 THEN
+       DBMS_OUTPUT.PUT_LINE('Even');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display a message if today is Monday (IF Statement)</h3>
+  <p>BEGIN
+     IF TO_CHAR(SYSDATE,'DY')='MON' THEN
+       DBMS_OUTPUT.PUT_LINE('Today is Monday');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Check if a number is divisible by 5 (IF Statement)</h3>
+  <p>DECLARE
+     n NUMBER := 25;
+   BEGIN
+     IF MOD(n,5)=0 THEN
+       DBMS_OUTPUT.PUT_LINE('Divisible by 5');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Check whether a number is even or odd (IF-ELSE)</h3>
+  <p>DECLARE
+     n NUMBER := 7;
+   BEGIN
+     IF MOD(n,2)=0 THEN
+       DBMS_OUTPUT.PUT_LINE('Even');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Odd');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Check whether a number is positive or negative (IF-ELSE)</h3>
+  <p>DECLARE
+     n NUMBER := -5;
+   BEGIN
+     IF n &gt;= 0 THEN
+       DBMS_OUTPUT.PUT_LINE('Positive');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Negative');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Compare two numbers and display the greater one (IF-ELSE)</h3>
+  <p>DECLARE
+     a NUMBER := 10;
+     b NUMBER := 20;
+   BEGIN
+     IF a &gt; b THEN
+       DBMS_OUTPUT.PUT_LINE('Greater: '||a);
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Greater: '||b);
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Check whether a student passed or failed (IF-ELSE)</h3>
+  <p>DECLARE
+     marks NUMBER := 35;
+   BEGIN
+     IF marks &gt;= 40 THEN
+       DBMS_OUTPUT.PUT_LINE('Pass');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Fail');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Check if salary is above average (IF-ELSE)</h3>
+  <p>DECLARE
+     v_sal NUMBER := 4000;
+     avg_sal NUMBER := 3000;
+   BEGIN
+     IF v_sal &gt; avg_sal THEN
+       DBMS_OUTPUT.PUT_LINE('Above Average');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Below Average');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Assign grades using IF-ELSIF-ELSE</h3>
+  <p>DECLARE
+     marks NUMBER := 75;
+   BEGIN
+     IF marks &gt;= 80 THEN
+       DBMS_OUTPUT.PUT_LINE('Grade A');
+     ELSIF marks &gt;= 60 THEN
+       DBMS_OUTPUT.PUT_LINE('Grade B');
+     ELSIF marks &gt;= 40 THEN
+       DBMS_OUTPUT.PUT_LINE('Grade C');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Fail');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Find the greatest of three numbers (IF-ELSIF-ELSE)</h3>
+  <p>DECLARE
+     a NUMBER := 10;
+     b NUMBER := 20;
+     c NUMBER := 15;
+   BEGIN
+     IF a &gt; b AND a &gt; c THEN
+       DBMS_OUTPUT.PUT_LINE('Greatest: '||a);
+     ELSIF b &gt; c THEN
+       DBMS_OUTPUT.PUT_LINE('Greatest: '||b);
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Greatest: '||c);
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Check if a number is Positive, Negative, or Zero (IF-ELSIF-ELSE)</h3>
+  <p>DECLARE
+     n NUMBER := 0;
+   BEGIN
+     IF n &gt; 0 THEN
+       DBMS_OUTPUT.PUT_LINE('Positive');
+     ELSIF n &lt; 0 THEN
+       DBMS_OUTPUT.PUT_LINE('Negative');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Zero');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Categorize salary (High/Medium/Low)</h3>
+  <p>DECLARE
+     sal NUMBER := 4500;
+   BEGIN
+     IF sal &gt; 5000 THEN
+       DBMS_OUTPUT.PUT_LINE('High');
+     ELSIF sal BETWEEN 3000 AND 5000 THEN
+       DBMS_OUTPUT.PUT_LINE('Medium');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Low');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Calculate bonus based on job role (IF-ELSIF-ELSE)</h3>
+  <p>DECLARE
+     job VARCHAR2(20) := 'MANAGER';
+     sal NUMBER := 4000;
+   BEGIN
+     IF job='MANAGER' THEN
+       DBMS_OUTPUT.PUT_LINE('Bonus: '||(sal*0.2));
+     ELSIF job='CLERK' THEN
+       DBMS_OUTPUT.PUT_LINE('Bonus: '||(sal*0.1));
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Bonus: '||(sal*0.05));
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display day of week based on number (CASE)</h3>
+  <p>DECLARE
+     d NUMBER := 3;
+   BEGIN
+     CASE d
+       WHEN 1 THEN DBMS_OUTPUT.PUT_LINE('Monday');
+       WHEN 2 THEN DBMS_OUTPUT.PUT_LINE('Tuesday');
+       WHEN 3 THEN DBMS_OUTPUT.PUT_LINE('Wednesday');
+       WHEN 4 THEN DBMS_OUTPUT.PUT_LINE('Thursday');
+       WHEN 5 THEN DBMS_OUTPUT.PUT_LINE('Friday');
+       WHEN 6 THEN DBMS_OUTPUT.PUT_LINE('Saturday');
+       WHEN 7 THEN DBMS_OUTPUT.PUT_LINE('Sunday');
+     END CASE;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Assign grades using CASE</h3>
+  <p>DECLARE
+     marks NUMBER := 85;
+   BEGIN
+     CASE 
+       WHEN marks &gt;= 80 THEN DBMS_OUTPUT.PUT_LINE('Grade A');
+       WHEN marks &gt;= 60 THEN DBMS_OUTPUT.PUT_LINE('Grade B');
+       WHEN marks &gt;= 40 THEN DBMS_OUTPUT.PUT_LINE('Grade C');
+       ELSE DBMS_OUTPUT.PUT_LINE('Fail');
+     END CASE;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Check whether a number is even or odd (CASE)</h3>
+  <p>DECLARE
+     n NUMBER := 9;
+   BEGIN
+     CASE MOD(n,2)
+       WHEN 0 THEN DBMS_OUTPUT.PUT_LINE('Even');
+       ELSE DBMS_OUTPUT.PUT_LINE('Odd');
+     END CASE;
+   END;</p>
+</div>
+
+<div class="question-card">
+ <div class="question-card">
+  <h3>Q19: Write a PL/SQL block using CASE to display department name based on department id</h3>
+  <p>DECLARE
+     d NUMBER := 20;
+   BEGIN
+     CASE d
+       WHEN 10 THEN DBMS_OUTPUT.PUT_LINE('Accounting');
+       WHEN 20 THEN DBMS_OUTPUT.PUT_LINE('Research');
+       WHEN 30 THEN DBMS_OUTPUT.PUT_LINE('Sales');
+       WHEN 40 THEN DBMS_OUTPUT.PUT_LINE('Operations');
+       ELSE DBMS_OUTPUT.PUT_LINE('Unknown Department');
+     END CASE;
+   END;</p>
+</div>
+<div class="question-card">
+  <h3>Q20: Categorize salary as High/Medium/Low (CASE Statement)</h3>
+  <p>DECLARE
+     sal NUMBER := 4200;
+   BEGIN
+     CASE 
+       WHEN sal &gt; 5000 THEN DBMS_OUTPUT.PUT_LINE('High');
+       WHEN sal BETWEEN 3000 AND 5000 THEN DBMS_OUTPUT.PUT_LINE('Medium');
+       ELSE DBMS_OUTPUT.PUT_LINE('Low');
+     END CASE;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Print numbers 1–10 but skip number 5 using CONTINUE</h3>
+  <p>BEGIN
+     FOR i IN 1..10 LOOP
+       IF i=5 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display only odd numbers between 1 and 20 using CONTINUE</h3>
+  <p>BEGIN
+     FOR i IN 1..20 LOOP
+       IF MOD(i,2)=0 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Skip multiples of 3 while printing numbers 1–15 (CONTINUE)</h3>
+  <p>BEGIN
+     FOR i IN 1..15 LOOP
+       IF MOD(i,3)=0 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Skip employees with salary less than 2000 using loop and CONTINUE</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT ENAME,SAL FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c;
+     LOOP
+       FETCH c INTO v_name,v_sal;
+       EXIT WHEN c%NOTFOUND;
+       IF v_sal &lt; 2000 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_sal);
+     END LOOP;
+     CLOSE c;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Exit loop when number reaches 5 (EXIT Statement)</h3>
+  <p>BEGIN
+     FOR i IN 1..10 LOOP
+       IF i=5 THEN EXIT; END IF;
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Print numbers until sum exceeds 50, then exit (EXIT Statement)</h3>
+  <p>DECLARE
+     sum NUMBER := 0;
+   BEGIN
+     FOR i IN 1..20 LOOP
+       sum := sum+i;
+       IF sum &gt; 50 THEN EXIT; END IF;
+       DBMS_OUTPUT.PUT_LINE('Sum='||sum);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Exit loop when a negative number is encountered (EXIT Statement)</h3>
+  <p>DECLARE
+     arr SYS.DBMS_DEBUG_VC2COLL := SYS.DBMS_DEBUG_VC2COLL('10','-5','20');
+     v NUMBER;
+   BEGIN
+     FOR i IN 1..arr.COUNT LOOP
+       v := TO_NUMBER(arr(i));
+       IF v &lt; 0 THEN EXIT; END IF;
+       DBMS_OUTPUT.PUT_LINE(v);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Use EXIT WHEN to stop loop when condition is met</h3>
+  <p>DECLARE
+     i NUMBER := 1;
+   BEGIN
+     LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+       i := i+1;
+       EXIT WHEN i&gt;10;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Use IF-ELSIF and CASE together</h3>
+  <p>DECLARE
+     marks NUMBER := 65;
+   BEGIN
+     IF marks &gt;= 80 THEN
+       DBMS_OUTPUT.PUT_LINE('Grade A');
+     ELSIF marks &gt;= 60 THEN
+       CASE 
+         WHEN marks BETWEEN 60 AND 69 THEN DBMS_OUTPUT.PUT_LINE('Grade B1');
+         ELSE DBMS_OUTPUT.PUT_LINE('Grade B2');
+       END CASE;
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Below 60');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Process employee salaries using LOOP, CONTINUE, and EXIT</h3>
+  <p>DECLARE
+     CURSOR c IS SELECT ENAME,SAL FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c;
+     LOOP
+       FETCH c INTO v_name,v_sal;
+       EXIT WHEN c%NOTFOUND;
+       IF v_sal &lt; 2000 THEN CONTINUE; END IF;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_sal);
+       IF v_sal &gt; 8000 THEN EXIT; END IF;
+     END LOOP;
+     CLOSE c;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Simulate a login system — check username and password using IF-ELSE</h3>
+  <p>DECLARE
+     v_user VARCHAR2(20) := 'admin';
+     v_pass VARCHAR2(20) := '1234';
+   BEGIN
+     IF v_user='admin' AND v_pass='1234' THEN
+       DBMS_OUTPUT.PUT_LINE('Login Successful');
+     ELSE
+       DBMS_OUTPUT.PUT_LINE('Invalid Credentials');
+     END IF;
+   END;</p>
+</div>
+
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

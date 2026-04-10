@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Control Language & Data Control Language/title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Grant SELECT privilege on EMP table to USER1</h3>
+  <p>GRANT SELECT ON EMP TO USER1;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Grant SELECT and INSERT privileges on EMP table to USER2</h3>
+  <p>GRANT SELECT, INSERT ON EMP TO USER2;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Grant all privileges on DEPT table to USER3</h3>
+  <p>GRANT ALL PRIVILEGES ON DEPT TO USER3;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Grant SELECT privilege on EMP table to USER4 with GRANT OPTION</h3>
+  <p>GRANT SELECT ON EMP TO USER4 WITH GRANT OPTION;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Grant UPDATE privilege only on SAL column of EMP table to USER5</h3>
+  <p>GRANT UPDATE (SAL) ON EMP TO USER5;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Grant DELETE privilege on EMP table to USER6</h3>
+  <p>GRANT DELETE ON EMP TO USER6;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Grant SELECT privilege on both EMP and DEPT tables to USER7</h3>
+  <p>GRANT SELECT ON EMP TO USER7; GRANT SELECT ON DEPT TO USER7;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Grant privileges on EMP table to PUBLIC</h3>
+  <p>GRANT SELECT ON EMP TO PUBLIC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Grant INSERT privilege on EMP table to USER8 with the ability to grant further</h3>
+  <p>GRANT INSERT ON EMP TO USER8 WITH GRANT OPTION;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Grant UPDATE and DELETE privileges on EMP table to USER9</h3>
+  <p>GRANT UPDATE, DELETE ON EMP TO USER9;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Revoke SELECT privilege on EMP table from USER1</h3>
+  <p>REVOKE SELECT ON EMP FROM USER1;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Revoke INSERT and UPDATE privileges on EMP table from USER2</h3>
+  <p>REVOKE INSERT, UPDATE ON EMP FROM USER2;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Revoke ALL privileges on DEPT table from USER3</h3>
+  <p>REVOKE ALL PRIVILEGES ON DEPT FROM USER3;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Revoke GRANT OPTION from USER4 on EMP table</h3>
+  <p>REVOKE GRANT OPTION FOR SELECT ON EMP FROM USER4;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Revoke UPDATE privilege on SAL column from USER5</h3>
+  <p>REVOKE UPDATE (SAL) ON EMP FROM USER5;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Revoke DELETE privilege on EMP table from USER6</h3>
+  <p>REVOKE DELETE ON EMP FROM USER6;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Revoke privileges granted to PUBLIC on EMP table</h3>
+  <p>REVOKE SELECT ON EMP FROM PUBLIC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Revoke all privileges on EMP table from USER9</h3>
+  <p>REVOKE ALL PRIVILEGES ON EMP FROM USER9;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Insert a new employee record into EMP table and commit the changes</h3>
+  <p>INSERT INTO EMP (ENAME, JOB, SAL, DEPTNO) VALUES ('ANISHA','CLERK',2000,20); COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Update salary of employees in department 10 and commit the changes</h3>
+  <p>UPDATE EMP SET SAL = SAL+500 WHERE DEPTNO=10; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Delete employees with salary less than 1000 and commit the transaction</h3>
+  <p>DELETE FROM EMP WHERE SAL &lt; 1000; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Insert multiple records into DEPT table and commit them together</h3>
+  <p>INSERT INTO DEPT VALUES (50,'HR','DELHI'); INSERT INTO DEPT VALUES (60,'IT','MUMBAI'); COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Update department location and commit the changes</h3>
+  <p>UPDATE DEPT SET LOC='CHENNAI' WHERE DEPTNO=20; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Insert a new employee into EMP table but rollback the transaction</h3>
+  <p>INSERT INTO EMP (ENAME, JOB, SAL, DEPTNO) VALUES ('TEST','CLERK',1500,30); ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Update salary of employees and then rollback the changes</h3>
+  <p>UPDATE EMP SET SAL=SAL+1000; ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Delete records from EMP table and rollback the transaction</h3>
+  <p>DELETE FROM EMP WHERE JOB='CLERK'; ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Perform multiple operations (INSERT, UPDATE, DELETE) and rollback all changes</h3>
+  <p>INSERT INTO EMP VALUES ('X','CLERK',1000,10); UPDATE EMP SET SAL=SAL+200; DELETE FROM EMP WHERE SAL&lt;500; ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Update department location and rollback before committing</h3>
+  <p>UPDATE DEPT SET LOC='PUNE' WHERE DEPTNO=30; ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Insert a new employee, update salary, and commit only after verifying results</h3>
+  <p>INSERT INTO EMP VALUES ('Y','ANALYST',3000,20); UPDATE EMP SET SAL=SAL+500 WHERE ENAME='Y'; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Insert multiple employees, rollback one operation using SAVEPOINT, then commit remaining</h3>
+  <p>INSERT INTO EMP VALUES ('A','CLERK',1200,10); SAVEPOINT sp1; INSERT INTO EMP VALUES ('B','MANAGER',4000,20); ROLLBACK TO sp1; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Create a transaction where some operations are committed and others are rolled back</h3>
+  <p>INSERT INTO EMP VALUES ('C','CLERK',1500,30); COMMIT; UPDATE EMP SET SAL=SAL+200 WHERE DEPTNO=30; ROLLBACK;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Demonstrate use of SAVEPOINT in EMP table operations</h3>
+  <p>INSERT INTO EMP VALUES ('D','CLERK',2000,20); SAVEPOINT sp2; UPDATE EMP SET SAL=SAL+300 WHERE ENAME='D'; ROLLBACK TO sp2; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Perform update on EMP table and rollback to a specific SAVEPOINT</h3>
+  <p>UPDATE EMP SET SAL=SAL+500 WHERE DEPTNO=10; SAVEPOINT sp3; UPDATE EMP SET SAL=SAL+1000 WHERE DEPTNO=20; ROLLBACK TO sp3; COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Grant privileges to a user, perform DML operations, and commit changes</h3>
+  <p>GRANT INSERT, UPDATE ON EMP TO USER10; 
+     INSERT INTO EMP VALUES ('E','CLERK',1500,20); 
+     UPDATE EMP SET SAL=SAL+200 WHERE ENAME='E'; 
+     COMMIT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Revoke privileges and verify access restrictions using EMP table</h3>
+  <p>REVOKE INSERT, UPDATE ON EMP FROM USER10; 
+     -- USER10 now cannot perform INSERT or UPDATE on EMP</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Demonstrate full cycle of GRANT, DML, COMMIT, REVOKE</h3>
+  <p>GRANT DELETE ON EMP TO USER11; 
+     DELETE FROM EMP WHERE JOB='CLERK'; 
+     COMMIT; 
+     REVOKE DELETE ON EMP FROM USER11;</p>
+</div>
+
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

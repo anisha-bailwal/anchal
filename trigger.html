@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Trigger to display a message whenever a record is inserted into EMP (Trigger Basics)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_insert_msg
+     AFTER INSERT ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Record Inserted into EMP');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: BEFORE INSERT trigger on EMP</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_before_insert
+     BEFORE INSERT ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Before Insert Trigger Fired');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: AFTER DELETE trigger on EMP</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_after_delete
+     AFTER DELETE ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Record Deleted from EMP');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Prevent deletion from EMP (BEFORE DELETE)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_prevent_delete
+     BEFORE DELETE ON EMP
+   BEGIN
+     RAISE_APPLICATION_ERROR(-20001,'Deletion not allowed');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: AFTER UPDATE trigger to display message</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_after_update
+     AFTER UPDATE ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Employee Salary Updated');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Row-level trigger to display old and new salary</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_salary_change
+     AFTER UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Old Salary='||:OLD.SAL||' New Salary='||:NEW.SAL);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Restrict salary update if new salary &lt; old salary</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_validate_salary
+     BEFORE UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF :NEW.SAL&lt;:OLD.SAL THEN
+       RAISE_APPLICATION_ERROR(-20002,'New salary cannot be less than old salary');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Automatically set hiredate while inserting employee record</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_set_hiredate
+     BEFORE INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     :NEW.HIREDATE:=SYSDATE;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Increase salary by 5% before updating</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_increase_salary
+     BEFORE UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     :NEW.SAL:=:OLD.SAL*1.05;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Copy deleted records into audit table</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_audit_delete
+     AFTER DELETE ON EMP
+     FOR EACH ROW
+   BEGIN
+     INSERT INTO EMP_AUDIT VALUES(:OLD.EMPNO,:OLD.ENAME,SYSDATE,'DELETE');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Statement-level trigger to display message on insert</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_stmt_insert
+     AFTER INSERT ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Insert Statement Executed');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Statement-level trigger to log update operations</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_stmt_update
+     AFTER UPDATE ON EMP
+   BEGIN
+     INSERT INTO EMP_LOG VALUES(USER,SYSDATE,'UPDATE');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Trigger fires once for DELETE statement</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_stmt_delete
+     BEFORE DELETE ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Delete Statement Fired');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: BEFORE trigger to validate salary before inserting</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_validate_insert
+     BEFORE INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF :NEW.SAL&lt;0 THEN
+       RAISE_APPLICATION_ERROR(-20003,'Salary must be positive');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: AFTER trigger to log inserted employee records</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_log_insert
+     AFTER INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     INSERT INTO EMP_LOG VALUES(:NEW.EMPNO,:NEW.ENAME,SYSDATE,'INSERT');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: BEFORE and AFTER triggers for UPDATE</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_before_update
+     BEFORE UPDATE ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Before Update Trigger');
+   END;
+   /
+   CREATE OR REPLACE TRIGGER trg_after_update2
+     AFTER UPDATE ON EMP
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('After Update Trigger');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Trigger fires only when salary &gt; 5000</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_conditional
+     AFTER INSERT OR UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   WHEN (NEW.SAL&gt;5000)
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('High Salary Employee');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Trigger to allow insert only during working hours</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_working_hours
+     BEFORE INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF TO_CHAR(SYSDATE,'HH24') NOT BETWEEN 9 AND 17 THEN
+       RAISE_APPLICATION_ERROR(-20004,'Insert allowed only during working hours');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Trigger to prevent update on weekends</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_no_weekend_update
+     BEFORE UPDATE ON EMP
+   BEGIN
+     IF TO_CHAR(SYSDATE,'DY') IN ('SAT','SUN') THEN
+       RAISE_APPLICATION_ERROR(-20005,'Update not allowed on weekends');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Trigger to maintain audit table for INSERT, UPDATE, DELETE</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_audit_all
+     AFTER INSERT OR UPDATE OR DELETE ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF INSERTING THEN
+       INSERT INTO EMP_AUDIT VALUES(:NEW.EMPNO,:NEW.ENAME,SYSDATE,'INSERT');
+     ELSIF UPDATING THEN
+       INSERT INTO EMP_AUDIT VALUES(:OLD.EMPNO,:OLD.ENAME,SYSDATE,'UPDATE');
+     ELSIF DELETING THEN
+       INSERT INTO EMP_AUDIT VALUES(:OLD.EMPNO,:OLD.ENAME,SYSDATE,'DELETE');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Trigger to generate automatic employee ID</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_auto_empid
+     BEFORE INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     SELECT emp_seq.NEXTVAL INTO :NEW.EMPNO FROM dual;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Trigger to enforce referential integrity manually</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_integrity
+     BEFORE INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF NOT EXISTS (SELECT 1 FROM DEPT WHERE DEPTNO=:NEW.DEPTNO) THEN
+       RAISE_APPLICATION_ERROR(-20006,'Invalid Department Number');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Trigger to calculate bonus after salary update</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_bonus_calc
+     AFTER UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     UPDATE EMP SET COMM=:NEW.SAL*0.1 WHERE EMPNO=:NEW.EMPNO;
+   END;</p>
+  </div>
+  <div class="question-card">
+  <h3>Q23: Trigger to calculate bonus after salary update</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_calc_bonus
+     AFTER UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     UPDATE EMP SET COMM=:NEW.SAL*0.1 WHERE EMPNO=:NEW.EMPNO;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Trigger to track number of rows affected (Advanced Logic)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_row_count
+     AFTER UPDATE ON EMP
+   DECLARE
+     v_count NUMBER;
+   BEGIN
+     SELECT SQL%ROWCOUNT INTO v_count FROM dual;
+     DBMS_OUTPUT.PUT_LINE('Rows affected='||v_count);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Trigger to prevent duplicate employee names (Validation Trigger)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_no_duplicate_name
+     BEFORE INSERT OR UPDATE OF ENAME ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF EXISTS (SELECT 1 FROM EMP WHERE ENAME=:NEW.ENAME) THEN
+       RAISE_APPLICATION_ERROR(-20007,'Duplicate Employee Name not allowed');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Trigger to log user activity (who updated, when updated)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_user_activity
+     AFTER UPDATE ON EMP
+     FOR EACH ROW
+   BEGIN
+     INSERT INTO EMP_ACTIVITY VALUES(USER,SYSDATE,:OLD.EMPNO,'UPDATE');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Trigger to restrict salary update beyond 20%</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_limit_salary_update
+     BEFORE UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     IF :NEW.SAL&gt;:OLD.SAL*1.2 THEN
+       RAISE_APPLICATION_ERROR(-20008,'Salary increase cannot exceed 20%');
+     END IF;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Trigger that calls a procedure from a package (Trigger + Package Integration)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_call_pkg
+     AFTER INSERT ON EMP
+     FOR EACH ROW
+   BEGIN
+     audit_pkg.log_insert(:NEW.EMPNO);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Trigger to maintain history table for salary changes</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_salary_history
+     AFTER UPDATE OF SAL ON EMP
+     FOR EACH ROW
+   BEGIN
+     INSERT INTO SAL_HISTORY VALUES(:OLD.EMPNO,:OLD.SAL,:NEW.SAL,SYSDATE);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Compound trigger (advanced Oracle feature)</h3>
+  <p>CREATE OR REPLACE TRIGGER trg_compound
+     FOR UPDATE OF SAL ON EMP
+     COMPOUND TRIGGER
+       v_count NUMBER:=0;
+     BEFORE STATEMENT IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Before Update Statement');
+     END BEFORE STATEMENT;
+     AFTER EACH ROW IS
+     BEGIN
+       v_count:=v_count+1;
+       DBMS_OUTPUT.PUT_LINE('Row Updated: '||:NEW.EMPNO);
+     END AFTER EACH ROW;
+     AFTER STATEMENT IS
+     BEGIN
+       DBMS_OUTPUT.PUT_LINE('Total Rows Updated='||v_count);
+     END AFTER STATEMENT;
+   END trg_compound;</p>
+</div>
+
+          </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

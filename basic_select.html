@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display all columns of the EMP table</h3>
+  <p>SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display EMPNO, ENAME, and SAL of all employees from the EMP table</h3>
+  <p>SELECT EMPNO, ENAME, SAL FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display unique job titles from the EMP table</h3>
+  <p>SELECT DISTINCT JOB FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display employee names along with their department numbers from the EMP table</h3>
+  <p>SELECT ENAME, DEPTNO FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display all department details from the DEPT table</h3>
+  <p>SELECT * FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display distinct department numbers from the EMP table</h3>
+  <p>SELECT DISTINCT DEPTNO FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display employee name and annual salary (SAL × 12) from the EMP table</h3>
+  <p>SELECT ENAME, SAL*12 AS ANNUAL_SALARY FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employee name, salary, and commission from the EMP table</h3>
+  <p>SELECT ENAME, SAL, COMM FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display job and salary of all employees from the EMP table</h3>
+  <p>SELECT JOB, SAL FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display employees along with their manager numbers from the EMP table</h3>
+  <p>SELECT ENAME, MGR FROM EMP;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

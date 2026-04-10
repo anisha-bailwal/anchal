@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Declare a cursor to fetch all employees and display names (Explicit Cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME FROM EMP;
+     v_name EMP.ENAME%TYPE;
+   BEGIN
+     OPEN c_emp;
+     LOOP
+       FETCH c_emp INTO v_name;
+       EXIT WHEN c_emp%NOTFOUND;
+       DBMS_OUTPUT.PUT_LINE(v_name);
+     END LOOP;
+     CLOSE c_emp;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Fetch employee name and salary using cursor (Explicit Cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c_emp;
+     LOOP
+       FETCH c_emp INTO v_name,v_sal;
+       EXIT WHEN c_emp%NOTFOUND;
+       DBMS_OUTPUT.PUT_LINE(v_name||' '||v_sal);
+     END LOOP;
+     CLOSE c_emp;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display employees whose salary &gt; 3000 using cursor (Explicit Cursor + Condition)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     OPEN c_emp;
+     LOOP
+       FETCH c_emp INTO v_name,v_sal;
+       EXIT WHEN c_emp%NOTFOUND;
+       IF v_sal&gt;3000 THEN
+         DBMS_OUTPUT.PUT_LINE(v_name||' '||v_sal);
+       END IF;
+     END LOOP;
+     CLOSE c_emp;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Count number of employees using cursor (Explicit Cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME FROM EMP;
+     v_name EMP.ENAME%TYPE;
+     cnt NUMBER:=0;
+   BEGIN
+     OPEN c_emp;
+     LOOP
+       FETCH c_emp INTO v_name;
+       EXIT WHEN c_emp%NOTFOUND;
+       cnt:=cnt+1;
+     END LOOP;
+     CLOSE c_emp;
+     DBMS_OUTPUT.PUT_LINE('Total Employees='||cnt);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Calculate total salary of all employees using cursor (Explicit Cursor + Aggregate)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT SAL FROM EMP;
+     v_sal EMP.SAL%TYPE;
+     total NUMBER:=0;
+   BEGIN
+     OPEN c_emp;
+     LOOP
+       FETCH c_emp INTO v_sal;
+       EXIT WHEN c_emp%NOTFOUND;
+       total:=total+v_sal;
+     END LOOP;
+     CLOSE c_emp;
+     DBMS_OUTPUT.PUT_LINE('Total Salary='||total);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Fetch records one by one using OPEN, FETCH, CLOSE (Cursor Lifecycle)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME FROM EMP;
+     v_name EMP.ENAME%TYPE;
+   BEGIN
+     OPEN c_emp;
+     FETCH c_emp INTO v_name;
+     WHILE c_emp%FOUND LOOP
+       DBMS_OUTPUT.PUT_LINE(v_name);
+       FETCH c_emp INTO v_name;
+     END LOOP;
+     CLOSE c_emp;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display all employee records using cursor FOR LOOP</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT * FROM EMP;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL||' '||rec.JOB);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employee names and jobs using cursor FOR LOOP</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,JOB FROM EMP;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' - '||rec.JOB);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display employees from department 10 using cursor FOR LOOP</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,DEPTNO FROM EMP WHERE DEPTNO=10;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.DEPTNO);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Calculate total salary using cursor FOR LOOP</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT SAL FROM EMP;
+     total NUMBER:=0;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       total:=total+rec.SAL;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Total Salary='||total);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employees with salary greater than average using cursor FOR LOOP</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+     avg_sal NUMBER;
+   BEGIN
+     SELECT AVG(SAL) INTO avg_sal FROM EMP;
+     FOR rec IN c_emp LOOP
+       IF rec.SAL&gt;avg_sal THEN
+         DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+       END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Parameterized cursor to display employees of a department</h3>
+  <p>DECLARE
+     CURSOR c_emp(dno NUMBER) IS SELECT ENAME FROM EMP WHERE DEPTNO=dno;
+   BEGIN
+     FOR rec IN c_emp(10) LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Parameterized cursor to fetch employees whose salary &gt; given value</h3>
+  <p>DECLARE
+     CURSOR c_emp(s NUMBER) IS SELECT ENAME,SAL FROM EMP WHERE SAL&gt;s;
+   BEGIN
+     FOR rec IN c_emp(3000) LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Parameterized cursor to display employees based on job role</h3>
+  <p>DECLARE
+     CURSOR c_emp(j VARCHAR2) IS SELECT ENAME,JOB FROM EMP WHERE JOB=j;
+   BEGIN
+     FOR rec IN c_emp('CLERK') LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.JOB);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Parameterized cursor to calculate total salary of a department</h3>
+  <p>DECLARE
+     CURSOR c_emp(dno NUMBER) IS SELECT SAL FROM EMP WHERE DEPTNO=dno;
+     total NUMBER:=0;
+   BEGIN
+     FOR rec IN c_emp(20) LOOP
+       total:=total+rec.SAL;
+     END LOOP;
+     DBMS_OUTPUT.PUT_LINE('Total Salary='||total);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Pass multiple parameters (deptno, job) to cursor</h3>
+  <p>DECLARE
+     CURSOR c_emp(dno NUMBER, j VARCHAR2) IS SELECT ENAME,JOB FROM EMP WHERE DEPTNO=dno AND JOB=j;
+   BEGIN
+     FOR rec IN c_emp(30,'SALESMAN') LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.JOB);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Update salary of employees using cursor FOR UPDATE</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,SAL FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       UPDATE EMP SET SAL=SAL+500 WHERE CURRENT OF c_emp;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Increase salary by 10% using WHERE CURRENT OF</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,SAL FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       UPDATE EMP SET SAL=SAL*1.1 WHERE CURRENT OF c_emp;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Delete employees with salary &lt; 2000 using cursor (Updatable Cursor + DELETE)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,SAL FROM EMP WHERE SAL&lt;2000 FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DELETE FROM EMP WHERE CURRENT OF c_emp;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Update job of employees using updatable cursor (Updatable Cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,JOB FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       UPDATE EMP SET JOB='ANALYST' WHERE CURRENT OF c_emp;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Fetch records using cursor and modify values row-by-row (Updatable Cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,SAL FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       UPDATE EMP SET SAL=SAL+100 WHERE CURRENT OF c_emp;
+       DBMS_OUTPUT.PUT_LINE('Updated Salary for Empno '||rec.EMPNO);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Explicit cursor with IF condition to display high salary employees (Cursor + IF)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       IF rec.SAL&gt;4000 THEN
+         DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+       END IF;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Cursor FOR LOOP to calculate bonus (10% of salary)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' Bonus='||(rec.SAL*0.1));
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Parameterized cursor looping through multiple departments</h3>
+  <p>DECLARE
+     CURSOR c_emp(dno NUMBER) IS SELECT ENAME FROM EMP WHERE DEPTNO=dno;
+   BEGIN
+     FOR rec IN c_emp(10) LOOP DBMS_OUTPUT.PUT_LINE(rec.ENAME); END LOOP;
+     FOR rec IN c_emp(20) LOOP DBMS_OUTPUT.PUT_LINE(rec.ENAME); END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Update and display employee data using updatable cursor (Updatable Cursor + Output)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,ENAME,SAL FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       UPDATE EMP SET SAL=SAL+200 WHERE CURRENT OF c_emp;
+       DBMS_OUTPUT.PUT_LINE('Updated '||rec.ENAME);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display top 3 highest paid employees using cursor (Cursor + Logic)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP ORDER BY SAL DESC;
+     i NUMBER:=0;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       EXIT WHEN i=3;
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+       i:=i+1;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Simulate pagination (fetch limited rows using cursor)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT ENAME,SAL FROM EMP;
+     i NUMBER:=0;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       EXIT WHEN i=5; -- fetch first 5 rows
+       DBMS_OUTPUT.PUT_LINE(rec.ENAME||' '||rec.SAL);
+       i:=i+1;
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Copy employee data into another table using cursor (Cursor + INSERT)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,ENAME,SAL FROM EMP;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       INSERT INTO EMP_COPY VALUES(rec.EMPNO,rec.ENAME,rec.SAL);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display department-wise employee count using cursor (Cursor + Grouping Logic)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT DEPTNO,COUNT(*) AS cnt FROM EMP GROUP BY DEPTNO;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       DBMS_OUTPUT.PUT_LINE('Dept '||rec.DEPTNO||' Count='||rec.cnt);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Process employee records and apply salary increments based on job (Cursor + Business Logic)</h3>
+  <p>DECLARE
+     CURSOR c_emp IS SELECT EMPNO,ENAME,JOB,SAL FROM EMP FOR UPDATE;
+   BEGIN
+     FOR rec IN c_emp LOOP
+       IF rec.JOB='CLERK' THEN
+         UPDATE EMP SET SAL=SAL+200 WHERE CURRENT OF c_emp;
+       ELSIF rec.JOB='MANAGER' THEN
+         UPDATE EMP SET SAL=SAL+500 WHERE CURRENT OF c_emp;
+       ELSE
+         UPDATE EMP SET SAL=SAL+300 WHERE CURRENT OF c_emp;
+       END IF;
+       DBMS_OUTPUT.PUT_LINE('Updated '||rec.ENAME);
+     END LOOP;
+   END;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display all department numbers from both EMP and DEPT tables using UNION</h3>
+  <p>SELECT DEPTNO FROM EMP UNION SELECT DEPTNO FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display all department numbers from EMP and DEPT including duplicates using UNION ALL</h3>
+  <p>SELECT DEPTNO FROM EMP UNION ALL SELECT DEPTNO FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display department numbers present in both EMP and DEPT using INTERSECT</h3>
+  <p>SELECT DEPTNO FROM EMP INTERSECT SELECT DEPTNO FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display department numbers present in EMP but not in DEPT using MINUS</h3>
+  <p>SELECT DEPTNO FROM EMP MINUS SELECT DEPTNO FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display department numbers present in DEPT but not assigned to any employee</h3>
+  <p>SELECT DEPTNO FROM DEPT MINUS SELECT DEPTNO FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display employee names and department names in a single column using UNION</h3>
+  <p>SELECT ENAME AS Name FROM EMP UNION SELECT DNAME AS Name FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display all employee names and department names, including duplicates</h3>
+  <p>SELECT ENAME AS Name FROM EMP UNION ALL SELECT DNAME AS Name FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display jobs that exist in EMP and also as department names in DEPT using INTERSECT</h3>
+  <p>SELECT JOB FROM EMP INTERSECT SELECT DNAME FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display employee names that are not department names</h3>
+  <p>SELECT ENAME FROM EMP MINUS SELECT DNAME FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display department locations not used by any employee using MINUS</h3>
+  <p>SELECT LOC FROM DEPT MINUS SELECT LOC FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employee names from department 10 and department 20 using UNION</h3>
+  <p>SELECT ENAME FROM EMP WHERE DEPTNO=10 UNION SELECT ENAME FROM EMP WHERE DEPTNO=20;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Display employee names from department 10 and department 20 including duplicates</h3>
+  <p>SELECT ENAME FROM EMP WHERE DEPTNO=10 UNION ALL SELECT ENAME FROM EMP WHERE DEPTNO=20;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display employees who work in departments that exist in DEPT table using INTERSECT</h3>
+  <p>SELECT ENAME FROM EMP INTERSECT SELECT ENAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Display employees whose department does not exist in DEPT table using MINUS</h3>
+  <p>SELECT ENAME FROM EMP MINUS SELECT ENAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display department numbers that have employees and also exist in DEPT table</h3>
+  <p>SELECT DEPTNO FROM EMP INTERSECT SELECT DEPTNO FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display all unique job roles from EMP and all unique department names from DEPT in one result</h3>
+  <p>SELECT JOB AS Value FROM EMP UNION SELECT DNAME AS Value FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Display common values between employee job and department location</h3>
+  <p>SELECT JOB FROM EMP INTERSECT SELECT LOC FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display employee names who are not assigned to any valid department</h3>
+  <p>SELECT ENAME FROM EMP WHERE DEPTNO NOT IN (SELECT DEPTNO FROM DEPT);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Combine employees earning &gt; 2000 and employees from department 10 using UNION</h3>
+  <p>SELECT ENAME FROM EMP WHERE SAL &gt; 2000 UNION SELECT ENAME FROM EMP WHERE DEPTNO=10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Display employees in department 10 but not in department 20 using MINUS</h3>
+  <p>SELECT ENAME FROM EMP WHERE DEPTNO=10 MINUS SELECT ENAME FROM EMP WHERE DEPTNO=20;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display department numbers that exist in EMP and DEPT but exclude department 10</h3>
+  <p>SELECT DEPTNO FROM EMP INTERSECT SELECT DEPTNO FROM DEPT MINUS SELECT 10 FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display all employee names and department names in a single result sorted alphabetically</h3>
+  <p>SELECT ENAME AS Name FROM EMP UNION SELECT DNAME AS Name FROM DEPT ORDER BY Name;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display department numbers that appear in EMP more than once using UNION ALL</h3>
+  <p>SELECT DEPTNO FROM EMP UNION ALL SELECT DEPTNO FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Display employees from departments located in NEW YORK and DALLAS using UNION</h3>
+  <p>SELECT ENAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC='NEW YORK') 
+     UNION 
+     SELECT ENAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Combine employees with salary &gt; 3000 and employees with job = 'MANAGER' — remove duplicates</h3>
+  <p>SELECT ENAME FROM EMP WHERE SAL &gt; 3000 UNION SELECT ENAME FROM EMP WHERE JOB='MANAGER';</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

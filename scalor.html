@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display employee name, hire date, current date, and number of days worked</h3>
+  <p>SELECT ENAME, HIREDATE, SYSDATE, SYSDATE - HIREDATE AS Days_Worked FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display employee name and hire date in format: Monday, January 01, 2024</h3>
+  <p>SELECT ENAME, TO_CHAR(HIREDATE,'Day, Month DD, YYYY') AS Hire_Date FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Find employees who joined in the same month as current system date</h3>
+  <p>SELECT ENAME FROM EMP WHERE TO_CHAR(HIREDATE,'MM') = TO_CHAR(SYSDATE,'MM');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display employee name and the next Monday after their hire date</h3>
+  <p>SELECT ENAME, NEXT_DAY(HIREDATE,'MONDAY') AS Next_Monday FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display employee name and the last day of their joining month</h3>
+  <p>SELECT ENAME, LAST_DAY(HIREDATE) AS Last_Day FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Find employees who have completed more than 10 years in the company</h3>
+  <p>SELECT ENAME FROM EMP WHERE MONTHS_BETWEEN(SYSDATE,HIREDATE)/12 &gt; 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display employee name and number of months worked</h3>
+  <p>SELECT ENAME, MONTHS_BETWEEN(SYSDATE,HIREDATE) AS Months_Worked FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employee name, hire date, and hire date after adding 3 years and 6 months</h3>
+  <p>SELECT ENAME, HIREDATE, ADD_MONTHS(HIREDATE,42) AS New_Date FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Find employees hired between two given dates</h3>
+  <p>SELECT ENAME FROM EMP WHERE HIREDATE BETWEEN TO_DATE('01-JAN-1981','DD-MON-YYYY') 
+     AND TO_DATE('31-DEC-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display difference in years between SYSDATE and hire date - rounded</h3>
+  <p>SELECT ENAME, ROUND(MONTHS_BETWEEN(SYSDATE,HIREDATE)/12) AS Years_Worked FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employee name and salary rounded to the nearest 1000</h3>
+  <p>SELECT ENAME, ROUND(SAL,-3) AS Rounded_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Display salary truncated to 2 decimal places</h3>
+  <p>SELECT TRUNC(SAL,2) AS Truncated_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display employee name and square root of salary</h3>
+  <p>SELECT ENAME, SQRT(SAL) AS Salary_Sqrt FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Find the absolute difference between salary and 5000</h3>
+  <p>SELECT ENAME, ABS(SAL-5000) AS Difference FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display salary rounded up to the nearest integer</h3>
+  <p>SELECT CEIL(SAL) AS Rounded_Up FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display salary rounded down to the nearest integer</h3>
+  <p>SELECT FLOOR(SAL) AS Rounded_Down FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Generate a random number between 1 and 500 for each employee</h3>
+  <p>SELECT ENAME, ROUND(DBMS_RANDOM.VALUE(1,500)) AS Random_Num FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display remainder when salary is divided by 2000</h3>
+  <p>SELECT ENAME, MOD(SAL,2000) AS Remainder FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Display salary raised to the power of 3</h3>
+  <p>SELECT ENAME, POWER(SAL,3) AS Salary_Cube FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Round salary to nearest hundred and thousand in two columns</h3>
+  <p>SELECT ENAME, ROUND(SAL,-2) AS Round_Hundred, ROUND(SAL,-3) AS Round_Thousand FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display employee names in uppercase and lowercase</h3>
+  <p>SELECT ENAME, UPPER(ENAME) AS Upper_Name, LOWER(ENAME) AS Lower_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display employee name and its length</h3>
+  <p>SELECT ENAME, LENGTH(ENAME) AS Name_Length FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display first 4 characters of employee name</h3>
+  <p>SELECT ENAME, SUBSTR(ENAME,1,4) AS First4 FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Concatenate employee name and job using - symbol</h3>
+  <p>SELECT ENAME || '-' || JOB AS Name_Job FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Replace all occurrences of letter 'A' with '#' in employee names</h3>
+  <p>SELECT REPLACE(ENAME,'A','#') AS Modified_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display position of first occurrence of 'E' in employee name</h3>
+  <p>SELECT ENAME, INSTR(ENAME,'E') AS Position FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Remove leading and trailing spaces from employee name</h3>
+  <p>SELECT TRIM(ENAME) AS Trimmed_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Display employee name with first letter capital and rest lowercase</h3>
+  <p>SELECT INITCAP(ENAME) AS Proper_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display last 3 characters of employee name</h3>
+  <p>SELECT ENAME, SUBSTR(ENAME,-3) AS Last3 FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Pad employee name with * on the left to make total length 10</h3>
+  <p>SELECT LPAD(ENAME,10,'*') AS Padded_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Display employee name with spaces removed</h3>
+  <p>SELECT REPLACE(ENAME,' ','') AS No_Spaces FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Display employee names starting with 'S'</h3>
+  <p>SELECT ENAME FROM EMP WHERE ENAME LIKE 'S%';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Count number of characters excluding spaces</h3>
+  <p>SELECT ENAME, LENGTH(REPLACE(ENAME,' ','')) AS Char_Count FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Display employee name reversed</h3>
+  <p>SELECT ENAME, REVERSE(ENAME) AS Reversed_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Extract domain name from email column</h3>
+  <p>SELECT SUBSTR(EMAIL,INSTR(EMAIL,'@')+1) AS Domain FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Convert current date into format: DD/MM/YYYY</h3>
+  <p>SELECT TO_CHAR(SYSDATE,'DD/MM/YYYY') AS Current_Date FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Convert string '15-AUG-2020' into DATE format</h3>
+  <p>SELECT TO_DATE('15-AUG-2020','DD-MON-YYYY') AS Converted_Date FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Convert salary into character with currency format ₹10,000</h3>
+  <p>SELECT ENAME, TO_CHAR(SAL,'L99,999') AS Salary_Format FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q39: Convert number 12345 into string with commas</h3>
+  <p>SELECT TO_CHAR(12345,'99,999') AS Number_Format FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Convert hire date into format: Month DD, YYYY</h3>
+  <p>SELECT ENAME, TO_CHAR(HIREDATE,'Month DD, YYYY') AS Hire_Date FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q41: Convert string column to number and perform arithmetic</h3>
+  <p>SELECT TO_NUMBER('1234')+100 AS Result FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q42: Handle invalid date format using TO_DATE safely</h3>
+  <p>SELECT TO_DATE('2020-08-15','YYYY-MM-DD') AS Safe_Date FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Convert SYSDATE into year only</h3>
+  <p>SELECT TO_CHAR(SYSDATE,'YYYY') AS Current_Year FROM DUAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Convert salary into string and concatenate with text</h3>
+  <p>SELECT ENAME, TO_CHAR(SAL) || ' Rupees' AS Salary_Text FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Display hire date in multiple formats - 3 columns</h3>
+  <p>SELECT ENAME, 
+         TO_CHAR(HIREDATE,'DD-MON-YYYY') AS Format1, 
+         TO_CHAR(HIREDATE,'Month DD, YYYY') AS Format2, 
+         TO_CHAR(HIREDATE,'YYYY/MM/DD') AS Format3 
+  FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Display employee name and salary; if salary is NULL display 0</h3>
+  <p>SELECT ENAME, NVL(SAL,0) AS Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Display employee name and commission; if NULL display 'No Commission'</h3>
+  <p>SELECT ENAME, NVL(TO_CHAR(COMM),'No Commission') AS Commission FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Use NVL2 to show commission status Has/No Commission</h3>
+  <p>SELECT ENAME, NVL2(COMM,'Has Commission','No Commission') AS Status FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Use COALESCE to display first non-null value among salary, commission, bonus</h3>
+  <p>SELECT ENAME, COALESCE(SAL,COMM,BONUS) AS First_Value FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Display employee salary; if NULL replace with average salary</h3>
+  <p>SELECT ENAME, NVL(SAL,(SELECT AVG(SAL) FROM EMP)) AS Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q51: Use NULLIF to compare salary and commission</h3>
+  <p>SELECT ENAME, NULLIF(SAL,COMM) AS Result FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q52: Replace NULL department name with 'No Department'</h3>
+  <p>SELECT NVL(DEPTNO,'No Department') AS Dept FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q53: Display employees whose commission is NULL</h3>
+  <p>SELECT ENAME FROM EMP WHERE COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q54: Use DECODE to categorize salary as Low/Medium/High</h3>
+  <p>SELECT ENAME, DECODE(TRUE,
+         SAL&lt;2000,'Low',
+         SAL BETWEEN 2000 AND 4000,'Medium',
+         'High') AS Category FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q55: Use CASE to categorize employees based on experience</h3>
+  <p>SELECT ENAME, 
+         CASE 
+           WHEN MONTHS_BETWEEN(SYSDATE,HIREDATE)/12 &lt; 5 THEN 'Junior'
+           WHEN MONTHS_BETWEEN(SYSDATE,HIREDATE)/12 BETWEEN 5 AND 10 THEN 'Mid-Level'
+           ELSE 'Senior'
+         END AS Experience 
+  FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q56: Display job; if NULL show 'Unknown Job'</h3>
+  <p>SELECT NVL(JOB,'Unknown Job') AS Job FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q57: Use NVL with date columns</h3>
+  <p>SELECT ENAME, NVL(HIREDATE,SYSDATE) AS Hire_Date FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q58: Display employee name and bonus; if NULL calculate 10% of salary</h3>
+  <p>SELECT ENAME, NVL(BONUS,SAL*0.1) AS Bonus FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q59: Use COALESCE with multiple NULL columns</h3>
+  <p>SELECT ENAME, COALESCE(COMM,BONUS,SAL) AS First_NonNull FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q60: Combine NVL and TO_CHAR for formatted output</h3>
+  <p>SELECT ENAME, NVL(TO_CHAR(COMM),'No Commission') AS Commission FROM EMP;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

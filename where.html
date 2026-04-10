@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display employees whose salary is greater than 3000</h3>
+  <p>SELECT * FROM EMP WHERE SAL &gt; 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display employees working in department 10</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO = 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display employees whose job is 'CLERK'</h3>
+  <p>SELECT * FROM EMP WHERE JOB = 'CLERK';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display employees hired after 01-JAN-81</h3>
+  <p>SELECT * FROM EMP WHERE HIREDATE &gt; TO_DATE('01-JAN-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display employees whose salary is less than 1500</h3>
+  <p>SELECT * FROM EMP WHERE SAL &lt; 1500;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display employees whose salary &gt; 2000 and job is 'MANAGER'</h3>
+  <p>SELECT * FROM EMP WHERE SAL &gt; 2000 AND JOB = 'MANAGER';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display employees working in department 10 or 20</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO IN (10,20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employees whose job is 'SALESMAN' and salary &gt; 1500</h3>
+  <p>SELECT * FROM EMP WHERE JOB = 'SALESMAN' AND SAL &gt; 1500;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display employees who are either CLERK or ANALYST</h3>
+  <p>SELECT * FROM EMP WHERE JOB IN ('CLERK','ANALYST');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display employees hired before 1982 and working in department 30</h3>
+  <p>SELECT * FROM EMP WHERE HIREDATE &lt; TO_DATE('01-JAN-1982','DD-MON-YYYY') AND DEPTNO = 30;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employees working in departments 10, 20, or 30</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO IN (10,20,30);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Display employees whose job is not MANAGER or CLERK</h3>
+  <p>SELECT * FROM EMP WHERE JOB NOT IN ('MANAGER','CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display employees whose department is not 10</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO &lt;&gt; 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Display employees whose salary is between 1000 and 3000</h3>
+  <p>SELECT * FROM EMP WHERE SAL BETWEEN 1000 AND 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display employees hired between 01-JAN-81 and 31-DEC-81</h3>
+  <p>SELECT * FROM EMP WHERE HIREDATE BETWEEN TO_DATE('01-JAN-1981','DD-MON-YYYY') 
+     AND TO_DATE('31-DEC-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display all employees ordered by salary in ascending order</h3>
+  <p>SELECT * FROM EMP ORDER BY SAL ASC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Display all employees ordered by salary in descending order</h3>
+  <p>SELECT * FROM EMP ORDER BY SAL DESC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display employees ordered by hire date</h3>
+  <p>SELECT * FROM EMP ORDER BY HIREDATE;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Display employees ordered by department number and salary</h3>
+  <p>SELECT * FROM EMP ORDER BY DEPTNO, SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Display employees ordered by job (ascending) and salary (descending)</h3>
+  <p>SELECT * FROM EMP ORDER BY JOB ASC, SAL DESC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display employee names ordered alphabetically</h3>
+  <p>SELECT ENAME FROM EMP ORDER BY ENAME ASC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display employees of department 30 ordered by salary</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO = 30 ORDER BY SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display employees ordered by annual salary</h3>
+  <p>SELECT ENAME, SAL*12 AS Annual_Salary FROM EMP ORDER BY Annual_Salary;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Display employees ordered by commission</h3>
+  <p>SELECT * FROM EMP ORDER BY COMM;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Display employees ordered by job and name</h3>
+  <p>SELECT * FROM EMP ORDER BY JOB, ENAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display employee name as Employee_Name</h3>
+  <p>SELECT ENAME AS Employee_Name FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Display salary as Monthly_Salary</h3>
+  <p>SELECT SAL AS Monthly_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Display employee name and job with aliases</h3>
+  <p>SELECT ENAME AS Name, JOB AS Role FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display department number as Dept_No</h3>
+  <p>SELECT DEPTNO AS Dept_No FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Display employee name and salary with meaningful aliases</h3>
+  <p>SELECT ENAME AS Employee, SAL AS Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Display commission as Incentive</h3>
+  <p>SELECT COMM AS Incentive FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Display employee name, job, and salary with aliases, ordered by job</h3>
+  <p>SELECT ENAME AS Name, JOB AS Role, SAL AS Pay FROM EMP ORDER BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Display employees of department 30 whose salary &gt; 1500, ordered by salary</h3>
+  <p>SELECT * FROM EMP WHERE DEPTNO = 30 AND SAL &gt; 1500 ORDER BY SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Display employees whose commission is NOT NULL, ordered by commission</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NOT NULL ORDER BY COMM;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Display employees whose salary is between 1500 and 3000, ordered by salary</h3>
+  <p>SELECT * FROM EMP WHERE SAL BETWEEN 1500 AND 3000 ORDER BY SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Display employee name and department, ordered by department and name</h3>
+  <p>SELECT ENAME, DEPTNO FROM EMP ORDER BY DEPTNO, ENAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Display employees whose name starts with 'S', ordered by salary</h3>
+  <p>SELECT * FROM EMP WHERE ENAME LIKE 'S%' ORDER BY SAL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Display employees hired before 1982 with aliases, ordered by hire date</h3>
+  <
+  <div class="question-card">
+  <h3>Q39: Display employee name as Name and salary as Pay for department 10</h3>
+  <p>SELECT ENAME AS Name, SAL AS Pay FROM EMP WHERE DEPTNO = 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Display employees whose commission is NULL, ordered by salary descending</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL ORDER BY SAL DESC;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q41: Display employee name and annual salary, ordered by annual salary</h3>
+  <p>SELECT ENAME, SAL*12 AS Annual_Salary FROM EMP ORDER BY Annual_Salary;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q42: Display employees whose commission is NULL but job is SALESMAN</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL AND JOB = 'SALESMAN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Display employees whose manager is NULL and salary &gt; 4000</h3>
+  <p>SELECT * FROM EMP WHERE MGR IS NULL AND SAL &gt; 4000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Display employees who do not earn commission and work in department 20</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL AND DEPTNO = 20;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Display employees whose commission is NOT NULL and department is 30</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NOT NULL AND DEPTNO = 30;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Display employees whose commission is NULL or salary &gt; 3000</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL OR SAL &gt; 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Display employees whose commission is NULL and salary &gt; 2000</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL AND SAL &gt; 2000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Display employees whose manager is not NULL</h3>
+  <p>SELECT * FROM EMP WHERE MGR IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Display employees who do not have a manager</h3>
+  <p>SELECT * FROM EMP WHERE MGR IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Display employees who are getting commission</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q51: Display employees whose commission is NULL</h3>
+  <p>SELECT * FROM EMP WHERE COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q52: Display job and salary using aliases</h3>
+  <p>SELECT JOB AS Role, SAL AS Pay FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q53: Display employee name and department number with aliases</h3>
+  <p>SELECT ENAME AS Name, DEPTNO AS Dept_No FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q54: Display hire date as Joining_Date</h3>
+  <p>SELECT ENAME, HIREDATE AS Joining_Date FROM EMP;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

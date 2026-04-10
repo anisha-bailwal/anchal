@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Insert a record into STUDENT table: SID=101, SNAME='RAHUL', AGE=20, COURSE='MCA'</h3>
+  <p>INSERT INTO STUDENT (SID, SNAME, AGE, COURSE) VALUES (101, 'RAHUL', 20, 'MCA');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Insert a record into EMPLOYEE table: EID=201, ENAME='ANITA', SALARY=45000, DEPTNO=10</h3>
+  <p>INSERT INTO EMPLOYEE (EID, ENAME, SALARY, DEPTNO) VALUES (201, 'ANITA', 45000, 10);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Insert a new department into DEPT table: DEPTNO=50, DNAME='TRAINING', LOC='DELHI'</h3>
+  <p>INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (50, 'TRAINING', 'DELHI');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Insert a record into BOOK table with only BOOK_ID, TITLE, and PRICE</h3>
+  <p>INSERT INTO BOOK (BOOK_ID, TITLE, PRICE) VALUES (1, 'SQL Basics', 500);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Insert multiple rows into COURSE table</h3>
+  <p>INSERT ALL INTO COURSE (CID, CNAME, DURATION) VALUES (1, 'JAVA', 6)<br>
+     INTO COURSE (CID, CNAME, DURATION) VALUES (2, 'PYTHON', 4)<br>
+     INTO COURSE (CID, CNAME, DURATION) VALUES (3, 'AI', 8)<br>
+     SELECT * FROM dual;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Insert data into EMP_COPY table from the EMP table</h3>
+  <p>INSERT INTO EMP_COPY SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Insert employees from EMP whose salary &gt; 3000 into EMP_HIGH_SAL</h3>
+  <p>INSERT INTO EMP_HIGH_SAL SELECT * FROM EMP WHERE SAL &gt; 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Insert employees hired after 1981 into EMP_NEW_HIRE</h3>
+  <p>INSERT INTO EMP_NEW_HIRE SELECT * FROM EMP WHERE HIREDATE &gt; TO_DATE('01-JAN-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Insert department numbers and names from DEPT into DEPT_BACKUP</h3>
+  <p>INSERT INTO DEPT_BACKUP (DEPTNO, DNAME) SELECT DEPTNO, DNAME FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Insert employee names and salaries into EMP_SALARY_RECORD</h3>
+  <p>INSERT INTO EMP_SALARY_RECORD (ENAME, SAL) SELECT ENAME, SAL FROM EMP;</p>
+</div>
+<div class="question-card">
+  <h3>Q11: Update the salary of employee SMITH to 2000</h3>
+  <p>UPDATE EMP SET SAL = 2000 WHERE ENAME = 'SMITH';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Increase salary of all employees by 10%</h3>
+  <p>UPDATE EMP SET SAL = SAL * 1.10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Update the department number of employee ALLEN to 20</h3>
+  <p>UPDATE EMP SET DEPTNO = 20 WHERE ENAME = 'ALLEN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Update commission of SALESMAN to 500</h3>
+  <p>UPDATE EMP SET COMM = 500 WHERE JOB = 'SALESMAN';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Update job of employee MILLER to MANAGER</h3>
+  <p>UPDATE EMP SET JOB = 'MANAGER' WHERE ENAME = 'MILLER';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Increase salary of employees in department 10 by 20%</h3>
+  <p>UPDATE EMP SET SAL = SAL * 1.20 WHERE DEPTNO = 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Update salary of employees whose job is CLERK to 1500</h3>
+  <p>UPDATE EMP SET SAL = 1500 WHERE JOB = 'CLERK';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Update location of department 30 to MUMBAI</h3>
+  <p>UPDATE DEPT SET LOC = 'MUMBAI' WHERE DEPTNO = 30;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Update commission of employees who have NULL commission to 100</h3>
+  <p>UPDATE EMP SET COMM = 100 WHERE COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Update salary of employees who earn less than average salary</h3>
+  <p>UPDATE EMP SET SAL = SAL + 500 WHERE SAL &lt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Delete employee SMITH from EMP table</h3>
+  <p>DELETE FROM EMP WHERE ENAME = 'SMITH';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Delete all employees working in department 30</h3>
+  <p>DELETE FROM EMP WHERE DEPTNO = 30;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Delete employees whose salary is less than 1000</h3>
+  <p>DELETE FROM EMP WHERE SAL &lt; 1000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Delete employees hired before 1981</h3>
+  <p>DELETE FROM EMP WHERE HIREDATE &lt; TO_DATE('01-JAN-1981','DD-MON-YYYY');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Delete employees who do not receive commission</h3>
+  <p>DELETE FROM EMP WHERE COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Delete departments located in CHICAGO</h3>
+  <p>DELETE FROM DEPT WHERE LOC = 'CHICAGO';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Delete employees whose job is CLERK</h3>
+  <p>DELETE FROM EMP WHERE JOB = 'CLERK';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Delete employees earning the minimum salary</h3>
+  <p>DELETE FROM EMP WHERE SAL = (SELECT MIN(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Delete employees working in departments located in NEW YORK</h3>
+  <p>DELETE FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC = 'NEW YORK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Delete employees whose manager number is NULL</h3>
+  <p>DELETE FROM EMP WHERE MGR IS NULL;</p>
+</div>
+
+
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

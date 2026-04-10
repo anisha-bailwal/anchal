@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Write a PL/SQL block to print your name and city in two separate lines</h3>
+  <p>BEGIN
+     DBMS_OUTPUT.PUT_LINE('Name: Anisha');
+     DBMS_OUTPUT.PUT_LINE('City: Chandigarh');
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Write a PL/SQL block to display numbers from 1 to 5</h3>
+  <p>BEGIN
+     FOR i IN 1..5 LOOP
+       DBMS_OUTPUT.PUT_LINE(i);
+     END LOOP;
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Write a PL/SQL block to print the current system date</h3>
+  <p>BEGIN
+     DBMS_OUTPUT.PUT_LINE('Current Date: ' || SYSDATE);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Write a PL/SQL block to display employee name and salary using variables</h3>
+  <p>DECLARE
+     v_name EMP.ENAME%TYPE;
+     v_sal  EMP.SAL%TYPE;
+   BEGIN
+     SELECT ENAME, SAL INTO v_name, v_sal FROM EMP WHERE EMPNO=7369;
+     DBMS_OUTPUT.PUT_LINE('Name: '||v_name||' Salary: '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Write a PL/SQL block to declare a variable and assign your age</h3>
+  <p>DECLARE
+     v_age NUMBER := 20;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Age: '||v_age);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Write a PL/SQL block to declare two variables and print their sum</h3>
+  <p>DECLARE
+     a NUMBER := 10;
+     b NUMBER := 20;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Sum: '||(a+b));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Write a PL/SQL block to store employee name and salary in variables</h3>
+  <p>DECLARE
+     v_name EMP.ENAME%TYPE;
+     v_sal  EMP.SAL%TYPE;
+   BEGIN
+     SELECT ENAME, SAL INTO v_name, v_sal FROM EMP WHERE EMPNO=7499;
+     DBMS_OUTPUT.PUT_LINE(v_name||' earns '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Write a PL/SQL block to swap two numbers</h3>
+  <p>DECLARE
+     x NUMBER := 10;
+     y NUMBER := 20;
+     temp NUMBER;
+   BEGIN
+     temp := x;
+     x := y;
+     y := temp;
+     DBMS_OUTPUT.PUT_LINE('x='||x||' y='||y);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Write a PL/SQL block to calculate area of a rectangle</h3>
+  <p>DECLARE
+     l NUMBER := 5;
+     w NUMBER := 10;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Area: '||(l*w));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Write a PL/SQL block to declare a constant PI and calculate area of a circle</h3>
+  <p>DECLARE
+     PI CONSTANT NUMBER := 3.14;
+     r NUMBER := 7;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Circle Area: '||(PI*r*r));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Write a PL/SQL block to declare a constant tax rate and calculate total salary after tax</h3>
+  <p>DECLARE
+     tax CONSTANT NUMBER := 0.1;
+     sal NUMBER := 5000;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Net Salary: '||(sal-(sal*tax)));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Write a PL/SQL block where constant value cannot be changed</h3>
+  <p>DECLARE
+     c CONSTANT NUMBER := 100;
+   BEGIN
+     -- c := 200; -- Error: cannot assign to constant
+     DBMS_OUTPUT.PUT_LINE('Constant: '||c);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Write a PL/SQL block to calculate simple interest</h3>
+  <p>DECLARE
+     p NUMBER := 1000;
+     r CONSTANT NUMBER := 5;
+     t NUMBER := 2;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Simple Interest: '||(p*r*t/100));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Write a PL/SQL block using different datatypes</h3>
+  <p>DECLARE
+     v_num NUMBER := 10;
+     v_str VARCHAR2(20) := 'Anisha';
+     v_date DATE := SYSDATE;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE(v_str||' '||v_num||' '||v_date);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Write a PL/SQL block to declare a variable using %TYPE</h3>
+  <p>DECLARE
+     v_sal EMP.SAL%TYPE;
+   BEGIN
+     SELECT SAL INTO v_sal FROM EMP WHERE EMPNO=7839;
+     DBMS_OUTPUT.PUT_LINE('Salary: '||v_sal);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Write a PL/SQL block to declare a record using %ROWTYPE</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7566;
+     DBMS_OUTPUT.PUT_LINE(v_emp.ENAME||' '||v_emp.SAL||' '||v_emp.DEPTNO);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Write a PL/SQL block to store and display current date</h3>
+  <p>DECLARE
+     v_date DATE := SYSDATE;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Today: '||v_date);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Write a PL/SQL block to convert number to string</h3>
+  <p>DECLARE
+     v_num NUMBER := 123;
+     v_str VARCHAR2(10);
+   BEGIN
+     v_str := TO_CHAR(v_num);
+     DBMS_OUTPUT.PUT_LINE('Converted: '||v_str);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Write a PL/SQL block using variables, constants, and output together</h3>
+  <p>DECLARE
+     v_name VARCHAR2(20) := 'Anisha';
+     v_age NUMBER := 20;
+     c_city CONSTANT VARCHAR2(20) := 'Chandigarh';
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE(v_name||' '||v_age||' '||c_city);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Write a PL/SQL block to display employee details using %ROWTYPE, constants, and comments</h3>
+  <p>DECLARE
+     v_emp EMP%ROWTYPE;
+     c_msg CONSTANT VARCHAR2(30) := 'Employee Details:';
+   BEGIN
+     SELECT * INTO v_emp FROM EMP WHERE EMPNO=7902;
+     DBMS_OUTPUT.PUT_LINE(c_msg||' '||v_emp.ENAME||' '||v_emp.SAL);
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Write a PL/SQL block to calculate bonus (10% of salary)</h3>
+  <p>DECLARE
+     v_sal NUMBER := 4000;
+     c_bonus CONSTANT NUMBER := 0.1;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Bonus: '||(v_sal*c_bonus));
+   END;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Write a PL/SQL block that uses all concepts</h3>
+  <p>DECLARE
+     v_name VARCHAR2(20) := 'Anisha';
+     v_sal NUMBER := 5000;
+     c_bonus CONSTANT NUMBER := 0.1;
+     v_date DATE := SYSDATE;
+   BEGIN
+     DBMS_OUTPUT.PUT_LINE('Name: '||v_name);
+     DBMS_OUTPUT.PUT_LINE('Salary: '||v_sal);
+     DBMS_OUTPUT.PUT_LINE('Bonus: '||(v_sal*c_bonus));
+     DBMS_OUTPUT.PUT_LINE('Date: '||v_date);
+   END;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Create a view to display employee name, salary, and department number from EMP table</h3>
+  <p>CREATE VIEW emp_view AS SELECT ENAME, SAL, DEPTNO FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Create a view to display employee name and department name by joining EMP and DEPT tables</h3>
+  <p>CREATE VIEW emp_dept_view AS 
+     SELECT E.ENAME, D.DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Create a view to display employees working in department 10</h3>
+  <p>CREATE VIEW dept10_view AS SELECT * FROM EMP WHERE DEPTNO = 10;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Create a view to display employee name, job, and annual salary</h3>
+  <p>CREATE VIEW annual_sal_view AS 
+     SELECT ENAME, JOB, SAL*12 AS Annual_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Create a view to display department name and location from DEPT table</h3>
+  <p>CREATE VIEW dept_view AS SELECT DNAME, LOC FROM DEPT;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Create a view to display employee name, department name, and location</h3>
+  <p>CREATE VIEW emp_dept_loc_view AS 
+     SELECT E.ENAME, D.DNAME, D.LOC FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Create a view to display employees earning more than 3000</h3>
+  <p>CREATE VIEW high_sal_view AS SELECT * FROM EMP WHERE SAL &gt; 3000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Create a view to display department-wise total salary</h3>
+  <p>CREATE VIEW dept_sal_view AS 
+     SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Create a view to display only managers</h3>
+  <p>CREATE VIEW manager_view AS SELECT * FROM EMP WHERE JOB = 'MANAGER';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Create a view with column aliases for employee name and salary</h3>
+  <p>CREATE VIEW alias_view AS SELECT ENAME AS Employee_Name, SAL AS Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Create a view for employees in department 20 with WITH CHECK OPTION</h3>
+  <p>CREATE VIEW dept20_view AS SELECT * FROM EMP WHERE DEPTNO = 20 WITH CHECK OPTION;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Insert a new employee into the view with department 20 (valid)</h3>
+  <p>INSERT INTO dept20_view (ENAME, JOB, SAL, DEPTNO) VALUES ('ANISHA','CLERK',2000,20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Try inserting an employee with department 30 into the view (invalid)</h3>
+  <p>-- Error: CHECK OPTION prevents inserting rows outside DEPTNO=20</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Update department number through the view from 20 to 30</h3>
+  <p>-- Error: CHECK OPTION prevents updating DEPTNO to values other than 20</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Create a view for employees with salary &gt; 2000 and enforce condition</h3>
+  <p>CREATE VIEW sal_check_view AS SELECT * FROM EMP WHERE SAL &gt; 2000 WITH CHECK OPTION;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Create a READ ONLY view to display employee details</h3>
+  <p>CREATE VIEW emp_readonly AS SELECT * FROM EMP WITH READ ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Create a READ ONLY view to display employee name and department name</h3>
+  <p>CREATE VIEW emp_dept_readonly AS 
+     SELECT E.ENAME, D.DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DEPTNO WITH READ ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Try updating salary through a READ ONLY view</h3>
+  <p>-- Error: Cannot update through a READ ONLY view</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Try inserting a new employee through a READ ONLY view</h3>
+  <p>-- Error: Cannot insert through a READ ONLY view</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Create a READ ONLY view for employees in department 10</h3>
+  <p>CREATE VIEW dept10_readonly AS SELECT * FROM EMP WHERE DEPTNO=10 WITH READ ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Create a materialized view to store employee name and salary</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv AS SELECT ENAME, SAL FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Create a materialized view to store employee name and department name</h3>
+  <p>CREATE MATERIALIZED VIEW emp_dept_mv AS 
+     SELECT E.ENAME, D.DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Create a materialized view with REFRESH COMPLETE</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv_complete REFRESH COMPLETE AS SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Create a materialized view with REFRESH FAST</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv_fast REFRESH FAST AS SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Create a materialized view with REFRESH ON COMMIT</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv_commit REFRESH ON COMMIT AS SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Create a materialized view to store department-wise total salary</h3>
+  <p>CREATE MATERIALIZED VIEW dept_sal_mv AS 
+     SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Create a materialized view with BUILD IMMEDIATE option</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv_immediate BUILD IMMEDIATE AS SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Create a materialized view with BUILD DEFERRED option</h3>
+  <p>CREATE MATERIALIZED VIEW emp_mv_deferred BUILD DEFERRED AS SELECT * FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Refresh a materialized view manually</h3>
+  <p>EXEC DBMS_MVIEW.REFRESH('EMP_MV');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Drop a materialized view created on EMP table</h3>
+  <p>DROP MATERIALIZED VIEW emp_mv;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Create a view joining EMP and DEPT and restrict it using WITH CHECK OPTION</h3>
+  <p>CREATE VIEW emp_dept_check AS 
+     SELECT E.ENAME, D.DNAME FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DEPTNO WITH CHECK OPTION;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Create a READ ONLY view showing employee name, department name, and salary</h3>
+  <p>CREATE VIEW emp_dept_sal_readonly AS 
+     SELECT E.ENAME, D.DNAME, E.SAL FROM EMP E JOIN DEPT D ON E.DEPTNO=D.DEPTNO WITH READ ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Create a complex view to display department name and highest salary in each department</h3>
+  <p>CREATE VIEW dept_high_sal AS 
+     SELECT D.DNAME, MAX(E.SAL) AS Highest_Salary 
+     FROM EMP E JOIN DEPT D ON E;</p>
+     <div class="question-card">
+  <h3>Q34: Create a materialized view based on the complex query with aggregate and join</h3>
+  <p>CREATE MATERIALIZED VIEW dept_high_sal_mv AS 
+     SELECT D.DNAME, MAX(E.SAL) AS Highest_Salary 
+     FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO 
+     GROUP BY D.DNAME;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Create a view that hides salary but shows employee name and department name</h3>
+  <p>CREATE VIEW emp_no_sal AS 
+     SELECT E.ENAME, D.DNAME 
+     FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Create a complex view to display department name and highest salary in each department</h3>
+  <p>CREATE VIEW dept_highest_salary AS 
+     SELECT D.DNAME, MAX(E.SAL) AS Highest_Salary 
+     FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO 
+     GROUP BY D.DNAME;</p>
+</div>
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+       
+    <div class="questions-container">
+        <div class="question-card">
+  <h3>Q1: Display employees whose salary is greater than JONES</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT SAL FROM EMP WHERE ENAME='JONES');</p>
+</div>
+<div class="question-card">
+  <h3>Q2: Display employees whose salary is greater than JONES</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT SAL FROM EMP WHERE ENAME='JONES');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display employees earning the same salary as SCOTT</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL = (SELECT SAL FROM EMP WHERE ENAME='SCOTT');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display employees hired after ALLEN</h3>
+  <p>SELECT ENAME, HIREDATE 
+     FROM EMP 
+     WHERE HIREDATE &gt; (SELECT HIREDATE FROM EMP WHERE ENAME='ALLEN');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display employees working in the same department as BLAKE</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO = (SELECT DEPTNO FROM EMP WHERE ENAME='BLAKE');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display employees having the same job as MILLER</h3>
+  <p>SELECT ENAME, JOB 
+     FROM EMP 
+     WHERE JOB = (SELECT JOB FROM EMP WHERE ENAME='MILLER');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display employees earning less than the average salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &lt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display employees earning more than the maximum salary of CLERKs</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT MAX(SAL) FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display employee(s) with the minimum salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL = (SELECT MIN(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display employee(s) with the maximum salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display employees working in departments located in NEW YORK</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC='NEW YORK');</p>
+</div>
+<div class="question-card">
+  <h3>Q12: Display employees earning more than all CLERKs</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; ALL (SELECT SAL FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display employees earning less than any MANAGER</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &lt; ANY (SELECT SAL FROM EMP WHERE JOB='MANAGER');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Display employees whose job appears in department 20</h3>
+  <p>SELECT ENAME, JOB 
+     FROM EMP 
+     WHERE JOB IN (SELECT DISTINCT JOB FROM EMP WHERE DEPTNO=20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display employees whose department has at least one SALESMAN</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='SALESMAN');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display employees earning the same salary as any CLERK</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL IN (SELECT SAL FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Display employees who are not working in departments of SALESMAN</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO NOT IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='SALESMAN');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display employees earning more than all employees in department 10</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; ALL (SELECT SAL FROM EMP WHERE DEPTNO=10);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Display employees whose department number is among departments with more than 3 employees</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)&gt;3);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Display employees whose salary is greater than salary of their manager</h3>
+  <p>SELECT E.ENAME, E.SAL, E.MGR 
+     FROM EMP E 
+     WHERE E.SAL &gt; (SELECT M.SAL FROM EMP M WHERE M.EMPNO=E.MGR);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display jobs where average salary is greater than overall average salary</h3>
+  <p>SELECT JOB, AVG(SAL) 
+     FROM EMP 
+     GROUP BY JOB 
+     HAVING AVG(SAL) &gt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+<div class="question-card">
+  <h3>Q22: Display employees earning more than the department average salary</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display employees earning the highest salary in each department</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Display employees earning the lowest salary in each job</h3>
+  <p>SELECT ENAME, SAL, JOB 
+     FROM EMP e 
+     WHERE SAL = (SELECT MIN(SAL) FROM EMP WHERE JOB=e.JOB);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Display departments having total salary greater than department 20</h3>
+  <p>SELECT DEPTNO, SUM(SAL) 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING SUM(SAL) &gt; (SELECT SUM(SAL) FROM EMP WHERE DEPTNO=20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display employees whose salary equals the maximum salary of their job</h3>
+  <p>SELECT ENAME, JOB, SAL 
+     FROM EMP e 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE JOB=e.JOB);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Display employees earning more than the overall average salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Display department(s) having the maximum number of employees</h3>
+  <p>SELECT DEPTNO 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING COUNT(*) = (SELECT MAX(COUNT(*)) FROM EMP GROUP BY DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display jobs having minimum average salary</h3>
+  <p>SELECT JOB 
+     FROM EMP 
+     GROUP BY JOB 
+     HAVING AVG(SAL) = (SELECT MIN(AVG(SAL)) FROM EMP GROUP BY JOB);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Display employees earning more than the average salary of CLERKs</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q31: Display department(s) where average salary is highest</h3>
+  <p>SELECT DEPTNO 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING AVG(SAL) = (SELECT MAX(AVG(SAL)) FROM EMP GROUP BY DEPTNO);</p>
+</div>
+<div class="question-card">
+  <h3>Q32: Display employees earning more than the average salary of their own department</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Display employees earning the maximum salary in their department</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Display employees earning the minimum salary in their department</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL = (SELECT MIN(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Display employees whose salary is greater than the average salary of their job</h3>
+  <p>SELECT ENAME, JOB, SAL 
+     FROM EMP e 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE JOB=e.JOB);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Display employees who are the only employee in their department</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP e 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)=1);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Display departments having employees earning more than 5000</h3>
+  <p>SELECT DISTINCT DEPTNO 
+     FROM EMP 
+     WHERE SAL &gt; 5000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Display employees whose department has more than 3 employees</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP e 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)&gt;3);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q39: Display employees whose job has more than 2 employees</h3>
+  <p>SELECT ENAME, JOB 
+     FROM EMP e 
+     WHERE JOB IN (SELECT JOB FROM EMP GROUP BY JOB HAVING COUNT(*)&gt;2);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Display employees working in departments where no one gets commission</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP e 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING SUM(NVL(COMM,0))=0);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q41: Display employees whose department has at least one manager</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP e 
+     WHERE DEPTNO IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='MANAGER');</p>
+</div>
+<div class="question-card">
+  <h3>Q42: Display departments that have employees</h3>
+  <p>SELECT DISTINCT DEPTNO 
+     FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Display departments that have no employees</h3>
+  <p>SELECT DEPTNO 
+     FROM DEPT 
+     WHERE DEPTNO NOT IN (SELECT DISTINCT DEPTNO FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Display employees who are managers (have subordinates)</h3>
+  <p>SELECT DISTINCT M.ENAME 
+     FROM EMP M 
+     WHERE M.EMPNO IN (SELECT E.MGR FROM EMP E WHERE E.MGR IS NOT NULL);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Display employees who are not managers</h3>
+  <p>SELECT ENAME 
+     FROM EMP 
+     WHERE EMPNO NOT IN (SELECT DISTINCT MGR FROM EMP WHERE MGR IS NOT NULL);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Display employees working in departments where SALESMAN exists</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='SALESMAN');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Display departments where no SALESMAN exists</h3>
+  <p>SELECT DEPTNO 
+     FROM DEPT 
+     WHERE DEPTNO NOT IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='SALESMAN');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Display employees whose department has employees with commission</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DISTINCT DEPTNO FROM EMP WHERE COMM IS NOT NULL);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Display departments where all employees get commission</h3>
+  <p>SELECT DEPTNO 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING MIN(NVL(COMM,0)) &gt; 0;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Display employees whose department has no CLERKs</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO NOT IN (SELECT DISTINCT DEPTNO FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q51: Display employees who work in departments located in CHICAGO</h3>
+  <p>SELECT ENAME, DEPTNO 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC='CHICAGO');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q52: Display department number and average salary of employees whose salary is greater than 2000</h3>
+  <p>SELECT DEPTNO, AVG(SAL) 
+     FROM EMP 
+     WHERE SAL &gt; 2000 
+     GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q53: Display job and total salary of employees earning more than the department average</h3>
+  <p>SELECT JOB, SUM(SAL) 
+     FROM EMP e 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO) 
+     GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q54: Display departments having average salary greater than overall average salary</h3>
+  <p>SELECT DEPTNO, AVG(SAL) 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING AVG(SAL) &gt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q55: Display job-wise employee count from employees earning more than 1500</h3>
+  <p>SELECT JOB, COUNT(*) 
+     FROM EMP 
+     WHERE SAL &gt; 1500 
+     GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q56: Display departments having more than 2 employees earning commission</h3>
+  <p>SELECT DEPTNO 
+     FROM EMP 
+     WHERE COMM IS NOT NULL 
+     GROUP BY DEPTNO 
+     HAVING COUNT(*) &gt; 2;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q57: Display job and maximum salary from employees hired after 1981</h3>
+  <p>SELECT JOB, MAX(SAL) 
+     FROM EMP 
+     WHERE HIREDATE &gt; TO_DATE('01-JAN-1981','DD-MON-YYYY') 
+     GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q58: Display department-wise total salary excluding department 30</h3>
+  <p>SELECT DEPTNO, SUM(SAL) 
+     FROM EMP 
+     WHERE DEPTNO&lt;&gt;30 
+     GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q59: Display departments having total salary greater than overall total salary average</h3>
+  <p>SELECT DEPTNO, SUM(SAL) 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING SUM(SAL) &gt; (SELECT AVG(SUM(SAL)) FROM EMP GROUP BY DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q60: Display job-wise average salary where department has more than 3 employees</h3>
+  <p>SELECT JOB, AVG(SAL) 
+     FROM EMP 
+     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)&gt;3) 
+     GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q61: Display department and job having maximum total salary</h3>
+  <p>SELECT DEPTNO, JOB 
+     FROM EMP 
+     GROUP BY DEPTNO, JOB 
+     HAVING SUM(SAL) = (SELECT MAX(SUM(SAL)) FROM EMP GROUP BY DEPTNO, JOB);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q62: Display employees earning the second highest salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE SAL &lt; (SELECT MAX(SAL) FROM EMP));</p>
+</div>
+
+<div class="question-card">
+  <h3>Q63: Display employees earning more than the average salary of departments located in DALLAS</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL &gt; (SELECT AVG(SAL) FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS'));</p>
+</div>
+
+<div class="question-card">
+  <h3>Q64: Display departments where maximum salary equals minimum salary</h3>
+  <p>SELECT DEPTNO 
+     FROM EMP 
+     GROUP BY DEPTNO 
+     HAVING MAX(SAL)=MIN(SAL);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q65: Display employees whose salary is less than all MANAGERS but more than any CLERK</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &lt; ALL (SELECT SAL FROM EMP WHERE JOB='MANAGER') 
+       AND SAL &gt; ANY (SELECT SAL FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q66: Display employees whose salary is equal to department-wise second highest salary</h3>
+  <p>SELECT ENAME, SAL, DEPTNO 
+     FROM EMP e 
+     WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO AND SAL &lt; (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=e.DEPTNO));</p>
+</div>
+
+<div class="question-card">
+  <h3>Q67: Display employees earning more than the median salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT MEDIAN(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q68: Display employees whose salary is greater than 50% of employees</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL &gt; (SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q69: Display employees earning the third highest salary</h3>
+  <p>SELECT ENAME, SAL 
+     FROM EMP 
+     WHERE SAL = (
+       SELECT MIN(SAL) 
+       FROM (
+         SELECT DISTINCT SAL 
+         FROM EMP 
+         ORDER BY SAL DESC
+       ) WHERE ROWNUM &lt;= 3
+     );</p>
+</div>
+
+
+        
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic SELECT Queries</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      
+    <div class="questions-container">
+     <div class="question-card">
+  <h3>Q1: Display the total number of employees</h3>
+  <p>SELECT COUNT(*) AS Total_Employees FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q2: Display the total salary of all employees</h3>
+  <p>SELECT SUM(SAL) AS Total_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q3: Display the average salary of all employees</h3>
+  <p>SELECT AVG(SAL) AS Average_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q4: Display the highest salary</h3>
+  <p>SELECT MAX(SAL) AS Highest_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q5: Display the lowest salary</h3>
+  <p>SELECT MIN(SAL) AS Lowest_Salary FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q6: Display the total number of departments in EMP table</h3>
+  <p>SELECT COUNT(DISTINCT DEPTNO) AS Dept_Count FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q7: Display the number of employees who are managers</h3>
+  <p>SELECT COUNT(*) AS Managers FROM EMP WHERE JOB = 'MANAGER';</p>
+</div>
+
+<div class="question-card">
+  <h3>Q8: Display the total commission paid to employees</h3>
+  <p>SELECT SUM(COMM) AS Total_Commission FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q9: Display the average commission</h3>
+  <p>SELECT AVG(COMM) AS Average_Commission FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q10: Display the number of employees who are getting commission</h3>
+  <p>SELECT COUNT(*) AS Commissioned_Employees FROM EMP WHERE COMM IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q11: Display department-wise total salary</h3>
+  <p>SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q12: Display department-wise average salary</h3>
+  <p>SELECT DEPTNO, AVG(SAL) AS Avg_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q13: Display department-wise number of employees</h3>
+  <p>SELECT DEPTNO, COUNT(*) AS Emp_Count FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q14: Display job-wise number of employees</h3>
+  <p>SELECT JOB, COUNT(*) AS Emp_Count FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q15: Display job-wise total salary</h3>
+  <p>SELECT JOB, SUM(SAL) AS Total_Salary FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q16: Display job-wise maximum salary</h3>
+  <p>SELECT JOB, MAX(SAL) AS Max_Salary FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q17: Display job-wise minimum salary</h3>
+  <p>SELECT JOB, MIN(SAL) AS Min_Salary FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q18: Display department-wise maximum salary</h3>
+  <p>SELECT DEPTNO, MAX(SAL) AS Max_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q19: Display department-wise minimum salary</h3>
+  <p>SELECT DEPTNO, MIN(SAL) AS Min_Salary FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q20: Display department-wise average commission</h3>
+  <p>SELECT DEPTNO, AVG(COMM) AS Avg_Commission FROM EMP GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q21: Display department-wise job-wise number of employees</h3>
+  <p>SELECT DEPTNO, JOB, COUNT(*) AS Emp_Count FROM EMP GROUP BY DEPTNO, JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q22: Display department-wise job-wise total salary</h3>
+  <p>SELECT DEPTNO, JOB, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO, JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q23: Display department-wise job-wise average salary</h3>
+  <p>SELECT DEPTNO, JOB, AVG(SAL) AS Avg_Salary FROM EMP GROUP BY DEPTNO, JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q24: Display job-wise department-wise maximum salary</h3>
+  <p>SELECT JOB, DEPTNO, MAX(SAL) AS Max_Salary FROM EMP GROUP BY JOB, DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q25: Display job-wise department-wise minimum salary</h3>
+  <p>SELECT JOB, DEPTNO, MIN(SAL) AS Min_Salary FROM EMP GROUP BY JOB, DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q26: Display department and job having highest total salary</h3>
+  <p>SELECT DEPTNO, JOB, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO, JOB 
+     ORDER BY Total_Salary DESC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q27: Display department where sum of salaries is maximum</h3>
+  <p>SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO 
+     ORDER BY Total_Salary DESC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q28: Display job having minimum average salary</h3>
+  <p>SELECT JOB, AVG(SAL) AS Avg_Salary FROM EMP GROUP BY JOB 
+     ORDER BY Avg_Salary ASC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q29: Display jobs having average salary greater than department-wise average salary</h3>
+  <p>SELECT JOB, AVG(SAL) FROM EMP GROUP BY JOB 
+     HAVING AVG(SAL) &gt; (SELECT AVG(SAL) FROM EMP GROUP BY DEPTNO);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q30: Display department having highest number of employees</h3>
+  <p>SELECT DEPTNO, COUNT(*) AS Emp_Count FROM EMP GROUP BY DEPTNO 
+     ORDER BY Emp_Count DESC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+<div class="question-card">
+  <h3>Q31: Display jobs whose total salary is more than salary of all CLERKs combined</h3>
+  <p>SELECT JOB, SUM(SAL) FROM EMP GROUP BY JOB 
+     HAVING SUM(SAL) &gt; (SELECT SUM(SAL) FROM EMP WHERE JOB='CLERK');</p>
+</div>
+
+<div class="question-card">
+  <h3>Q32: Display departments having same number of employees</h3>
+  <p>SELECT DEPTNO, COUNT(*) AS Emp_Count FROM EMP GROUP BY DEPTNO 
+     HAVING COUNT(*) IN (SELECT COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*) &gt; 1);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q33: Display jobs where max salary is equal to department 20 max salary</h3>
+  <p>SELECT JOB, MAX(SAL) FROM EMP GROUP BY JOB 
+     HAVING MAX(SAL) = (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=20);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q34: Display department having minimum total salary</h3>
+  <p>SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO 
+     ORDER BY Total_Salary ASC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q35: Display job having highest average salary</h3>
+  <p>SELECT JOB, AVG(SAL) AS Avg_Salary FROM EMP GROUP BY JOB 
+     ORDER BY Avg_Salary DESC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q36: Display department number and total salary where average salary is greater than overall average salary</h3>
+  <p>SELECT DEPTNO, SUM(SAL) AS Total_Salary FROM EMP GROUP BY DEPTNO 
+     HAVING AVG(SAL) &gt; (SELECT AVG(SAL) FROM EMP);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q37: Display job-wise count of employees not getting commission</h3>
+  <p>SELECT JOB, COUNT(*) FROM EMP WHERE COMM IS NULL GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q38: Display departments where no employee gets commission</h3>
+  <p>SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING SUM(CASE WHEN COMM IS NOT NULL THEN 1 ELSE 0 END)=0;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q39: Display departments where all employees get commission</h3>
+  <p>SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)=COUNT(COMM);</p>
+</div>
+
+<div class="question-card">
+  <h3>Q40: Display job-wise average commission</h3>
+  <p>SELECT JOB, AVG(COMM) FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q41: Display department-wise count of employees where manager is NULL</h3>
+  <p>SELECT DEPTNO, COUNT(*) FROM EMP WHERE MGR IS NULL GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q42: Display number of employees without commission</h3>
+  <p>SELECT COUNT(*) FROM EMP WHERE COMM IS NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q43: Display total commission paid (ignore NULLs)</h3>
+  <p>SELECT SUM(NVL(COMM,0)) AS Total_Commission FROM EMP;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q44: Display department-wise average commission excluding NULLs</h3>
+  <p>SELECT DEPTNO, AVG(COMM) FROM EMP WHERE COMM IS NOT NULL GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q45: Display job-wise total commission</h3>
+  <p>SELECT JOB, SUM(COMM) FROM EMP GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q46: Display department-wise count of employees getting commission</h3>
+  <p>SELECT DEPTNO, COUNT(*) FROM EMP WHERE COMM IS NOT NULL GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q47: Display jobs having more than one manager</h3>
+  <p>SELECT JOB FROM EMP WHERE JOB='MANAGER' GROUP BY JOB HAVING COUNT(*) &gt; 1;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q48: Display departments having employees with commission</h3>
+  <p>SELECT DISTINCT DEPTNO FROM EMP WHERE COMM IS NOT NULL;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q49: Display job-wise average salary where total salary &gt; 5000</h3>
+  <p>SELECT JOB, AVG(SAL) FROM EMP GROUP BY JOB HAVING SUM(SAL) &gt; 5000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q50: Display department-wise total salary where employee count &gt; 4</h3>
+  <p>SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING COUNT(*) &gt; 4;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q51: Display jobs whose minimum salary is less than 1000</h3>
+  <p>SELECT JOB, MIN(SAL) FROM EMP GROUP BY JOB HAVING MIN(SAL) &lt; 1000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q52: Display departments having maximum salary greater than 4000</h3>
+  <p>SELECT DEPTNO, MAX(SAL) FROM EMP GROUP BY DEPTNO HAVING MAX(SAL) &gt; 4000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q53: Display jobs having more than 2 employees</h3>
+  <p>SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*) &gt; 2;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q54: Display departments whose total salary is greater than 10000</h3>
+  <p>SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL) &gt; 10000;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q55: Display jobs having average salary greater than 2500</h3>
+  <p>SELECT JOB, AVG(SAL) FROM EMP GROUP BY JOB HAVING AVG(SAL) &gt; 2500;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q56: Display departments having more than 3 employees</h3>
+  <p>SELECT DEPTNO, COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*) &gt; 3;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q57: Display department-wise employee count where job is SALESMAN</h3>
+  <p>SELECT DEPTNO, COUNT(*) FROM EMP WHERE JOB='SALESMAN' GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q58: Display job-wise total commission where commission is NOT NULL</h3>
+  <p>SELECT JOB, SUM(COMM) FROM EMP WHERE COMM IS NOT NULL GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q59: Display job-wise max salary where salary &gt; 1500</h3>
+  <p>SELECT JOB, MAX(SAL) FROM EMP WHERE SAL &gt; 1500 GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q60: Display department-wise total salary excluding department 30</h3>
+  <p>SELECT DEPTNO, SUM(SAL) FROM EMP WHERE DEPTNO &lt;&gt; 30 GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q61: Display job-wise average salary where department is 20</h3>
+  <p>SELECT JOB, AVG(SAL) FROM EMP WHERE DEPTNO=20 GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q62: Display department-wise number of employees where commission is NOT NULL</h3>
+  <p>SELECT DEPTNO, COUNT(*) FROM EMP WHERE COMM IS NOT NULL GROUP BY DEPTNO;</p>
+</div>
+ <div class="question-card">
+  <h3>Q63: Display job-wise total salary for CLERK and MANAGER</h3>
+  <p>SELECT JOB, SUM(SAL) AS Total_Salary 
+     FROM EMP 
+     WHERE JOB IN ('CLERK','MANAGER') 
+     GROUP BY JOB;</p>
+</div>
+<div class="question-card">
+  <h3>Q64: Display department-wise average salary for employees hired after 1981</h3>
+  <p>SELECT DEPTNO, AVG(SAL) FROM EMP 
+     WHERE HIREDATE &gt; TO_DATE('01-JAN-1981','DD-MON-YYYY') 
+     GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q65: Display job-wise employee count where salary &gt; 2000</h3>
+  <p>SELECT JOB, COUNT(*) FROM EMP 
+     WHERE SAL &gt; 2000 
+     GROUP BY JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q66: Display department-wise total salary for department numbers greater than 10</h3>
+  <p>SELECT DEPTNO, SUM(SAL) FROM EMP 
+     WHERE DEPTNO &gt; 10 
+     GROUP BY DEPTNO;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q67: Display department and job having maximum number of employees</h3>
+  <p>SELECT DEPTNO, JOB, COUNT(*) AS Emp_Count FROM EMP 
+     GROUP BY DEPTNO, JOB 
+     ORDER BY Emp_Count DESC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q68: Display department-wise job-wise employee count</h3>
+  <p>SELECT DEPTNO, JOB, COUNT(*) AS Emp_Count FROM EMP 
+     GROUP BY DEPTNO, JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q69: Display department-wise job-wise total commission</h3>
+  <p>SELECT DEPTNO, JOB, SUM(COMM) AS Total_Commission FROM EMP 
+     GROUP BY DEPTNO, JOB;</p>
+</div>
+
+<div class="question-card">
+  <h3>Q70: Display department and job having lowest average salary</h3>
+  <p>SELECT DEPTNO, JOB, AVG(SAL) AS Avg_Salary FROM EMP 
+     GROUP BY DEPTNO, JOB 
+     ORDER BY Avg_Salary ASC FETCH FIRST 1 ROWS ONLY;</p>
+</div>
+
+  
+    </div>
+       </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
